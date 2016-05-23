@@ -63,22 +63,18 @@ public class Historico implements Serializable {
     private String docAdjunto;
     
     @JoinColumn(name = "ID_AVISO", referencedColumnName = "ID_AVISO", insertable = false, updatable = false)
-     @ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY) //cambiado
+    @ManyToOne(optional = false)
     private Aviso aviso;
     
     @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADO")
-    @ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY) //cambiado
-    private Empleado idEmpleado;
-    
-    @JoinColumn(name = "SUPERVISOR", referencedColumnName = "ID_EMPLEADO", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Empleado idSupervisor;
+    private Empleado idEmpleado;
     
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "historico")
     private Visitas visitas;
     
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "historico") //cambiado
-    private Collection<OrdTrabajo> ordenesTrabajo = new ArrayList<>(); //cambiado
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "historico")
+    private Collection<OrdTrabajo> ordenesTrabajo;
 
     public Historico() {
     }
@@ -227,15 +223,6 @@ public class Historico implements Serializable {
         this.ordenesTrabajo = ordTrabajoCollection;
     }
 
-    public Empleado getIdSupervisor() {
-        return idSupervisor;
-    }
-
-    public void setIdSupervisor(Empleado idSupervisor) {
-        this.idSupervisor = idSupervisor;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 0;

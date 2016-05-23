@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -28,7 +29,7 @@ import javax.inject.Inject;
  * @author malex
  */
 @Named(value = "ordenTrabajo")
-@SessionScoped
+@RequestScoped
 
 public class OrdenTrabajo implements Serializable {
 
@@ -44,6 +45,7 @@ public class OrdenTrabajo implements Serializable {
     private String trabajo_realizar;
     private List<Brigada> brigadas;
     private Brigada brigada;
+     private int ID_Orden;
 
     public String getEstado() {
         return estado;
@@ -155,7 +157,7 @@ public class OrdenTrabajo implements Serializable {
         this.ID_Orden = ID_aviso;
     }
 
-    private int ID_Orden;
+   
 
     /**
      * Creates a new instance of Orden_trabajo
@@ -199,22 +201,23 @@ public class OrdenTrabajo implements Serializable {
 
             System.out.println(brigada);
 
-            ord = new OrdTrabajo(ID_Orden, new Date(), trabajo_realizar, brigada, aviso.getHistoricoReciente().getEstado());
+            ord = new OrdTrabajo(null, new Date(), trabajo_realizar, brigada, "abierto");
             
             
-            
-            
+            System.out.println(aviso.getHistoricoReciente().getAviso().getIdAviso());
+            System.out.println(aviso.getAviso().getIdAviso());
+           
         
+            
+       
 
-        ord.setEstado("abierto");
-
-       // ord.setHistorico(aviso.getHistoricoReciente());
+        ord.setHistorico(aviso.getHistoricoReciente());
         
        
 
         ordTrabajoNegocio.anadirOrden(ord);
 
-        aviso.getHistoricoReciente().getOrdTrabajoCollection().add(ord);
+        //aviso.getHistoricoReciente().getOrdTrabajoCollection().add(ord);
 
         return "bandejaOrdenTrabajo.xhtml";
 

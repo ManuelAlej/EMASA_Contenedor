@@ -43,7 +43,7 @@ public class ControlOrdenTrabajo implements Serializable{
     
     private List<OrdTrabajo> listOrd;
     private OrdTrabajo ordSelected;
-    private OrdTrabajo ordHelper;
+   
     @Inject
     private OpcionesAviso aviso;
 
@@ -71,13 +71,7 @@ public class ControlOrdenTrabajo implements Serializable{
         this.idAviso = idAviso;
     }
 
-    public OrdTrabajo getOrdHelper() {
-        return ordHelper;
-    }
-
-    public void setOrdHelper(OrdTrabajo ordHelper) {
-        this.ordHelper = ordHelper;
-    }
+   
 
     public OpcionesAviso getAviso() {
         return aviso;
@@ -129,13 +123,7 @@ public class ControlOrdenTrabajo implements Serializable{
         
         listOrden=(List<OrdTrabajo>) aviso.getHistoricoReciente().getOrdTrabajoCollection();
         
-        for (OrdTrabajo t:  listOrden)
-        {
-            if (t.getEstado().equals("abierto"))
-            {
-                listOrd.add(t);
-            }
-        }
+      
         
         idAviso=aviso.getAviso().getIdAviso();
         sup=aviso.getSupervisor();

@@ -15,6 +15,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -24,13 +25,14 @@ import javax.inject.Inject;
  * @author malex
  */
 @Named(value = "modificarOrdTrabajo")
-@SessionScoped
+@RequestScoped
 
 public class ModificarOrdTrabajo implements Serializable {
 
     @Inject
     private ControlOrdenTrabajo ord;
 
+    
     @EJB
     OrdTrabajoNegocio ordTrabajoNegocio;
     @EJB 
@@ -116,6 +118,15 @@ public class ModificarOrdTrabajo implements Serializable {
 
     }
 
+    public ActuacionesNegocio getActuacionesNegocio() {
+        return actuacionesNegocio;
+    }
+
+    public void setActuacionesNegocio(ActuacionesNegocio actuacionesNegocio) {
+        this.actuacionesNegocio = actuacionesNegocio;
+    }
+
+    
     @PostConstruct
 
     public void init() {
@@ -124,9 +135,9 @@ public class ModificarOrdTrabajo implements Serializable {
        supervisor=ord.getSup();
         
         //orden_trabajo.add(new OrdTrabajo((integer)*10+1));
-        if (ord.getOrdSelected().getEstado().equals("")) {
+        /*if (ord.getOrdSelected().getEstado().equals("")) {
             ord.getOrdSelected().setEstado("---------");
-        }
+        }*/
 
         if (actuacionesRealizadas.equals("")) {
             actuacionesRealizadas = "Vacio";

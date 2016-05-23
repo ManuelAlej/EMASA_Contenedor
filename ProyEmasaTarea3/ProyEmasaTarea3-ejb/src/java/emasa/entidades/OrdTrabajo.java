@@ -54,14 +54,14 @@ public class OrdTrabajo implements Serializable {
     private Date fechaFinalizacion;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ordTrabajo")
-    private Collection<Actuaciones> actuaciones = new ArrayList<>(); ;
+    private Collection<Actuaciones> actuaciones;
     
     @JoinColumns({
         @JoinColumn(name = "ID_AVISO", referencedColumnName = "ID_AVISO"),
         @JoinColumn(name = "FECHA_ACTUALIZACION", referencedColumnName = "FECHA_ACTUALIZACION"),
         @JoinColumn(name = "SUPERVISOR", referencedColumnName = "SUPERVISOR")})
-    @ManyToOne(cascade={CascadeType.PERSIST},fetch=FetchType.LAZY) //cambiado
-    private Historico historico;
+    @ManyToOne(optional = false)
+     private Historico historico;
 
     public OrdTrabajo() {
     }

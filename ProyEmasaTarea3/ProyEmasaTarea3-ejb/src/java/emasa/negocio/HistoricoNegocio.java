@@ -25,6 +25,7 @@ public class HistoricoNegocio {
     public void persist(Historico h) {
         em.persist(h);
     }
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
