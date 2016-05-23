@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+        
+    </ui:define>
+
+    <ui:define name="aviso">
+        <h:form id="form">
+               <p:growl id="msgs" showDetail="true" />
+               <p:dataTable id="eventsDT" var="asignacion" value="#{controlAsignacion.supervisores}" resizableColumns="true"  selectionMode="single" selection="#{controlAsignacion.supervisorSelected}" rowKey="#{asignacion.idEmpleado}" >
+                <f:facet name="header" >
+                   Asignar Visitas
+                </f:facet> 
+                   <p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml';" listener="#{controlAsignacion.onRowSelect}" update=":form:msgs" />
+                <p:ajax event="rowUnselect" listener="#{controlAsignacion.onRowUnselect}" update=":form:msgs" />
+
+                <p:column headerText="Nombre">
+                   <h:outputText value="#{asignacion.nombre}" />
+                </p:column>
+                <p:column headerText="apellidos" >
+                    <h:outputText value="#{asignacion.apellidos}" />
+                </p:column>
+                <p:column headerText="Turno "  filterBy="#{asignacion.turno}" >
+                    <h:outputText value="#{asignacion.turno}" />
+                </p:column>
+                <p:column headerText="Especialidad" >
+                    <h:outputText value="#{asignacion.especialidad}" />
+                </p:column>  
+            </p:dataTable>
+        </h:form>              
+    </ui:define>
+
+</ui:composition>

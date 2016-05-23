@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+
+    </ui:define>
+
+    <ui:define name="aviso">
+        <h:form id="formDetalles">
+
+
+            <p:dataGrid id="gridDetalles" value="#{controlHistoricos.historicoSelected}" var="item" columns="2"  >
+                <f:facet name="header" >Detalles</f:facet>
+                <h:panelGrid columns="2" cellpadding="10" cellspacing="2" border="1" width="75%"  > 
+                    <h:outputText value="Fecha ultima actualizacion "/>
+                    <h:outputText value="#{item.historicoPK.fechaActualizacion}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="Descripcion "/>
+                    <h:outputText value="#{item.descripcion}"/>
+                    <h:outputText value="Direccion"/>
+                    <h:outputText value="#{item.direccion}"/>
+                    <h:outputText value="Estado"/>
+                    <h:outputText value="#{item.estado}"/>
+                    <h:outputText value="Duplicado"/>
+                    <h:outputText value="#{item.duplicado}"/>
+                    <h:outputText value="Fecha de Cierre"/>
+                    <h:outputText value="#{item.fechaCierre}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="Tipo de Aviso"/>
+                    <h:outputText value="#{item.tipoAviso}"/>
+                    <h:outputText value="Causa"/>
+                    <h:outputText value="#{item.causa}"/>
+                    <h:outputText value="Urgencia"/>
+                    <h:outputText value="#{item.urgencia}"/>
+                    <h:outputText value="Ubicacion Gps"/>
+                    <h:outputText value="#{item.ubicacionGps}"/>
+                    <h:outputText value="Red de Agua"/>
+                    <h:outputText value="#{item.redAgua}"/>
+                    <h:outputText value="Aviso"/>
+                    <h:outputText value="#{controlOrdenTrabajo.idAviso}"/>
+                    <h:outputText value="OPmov asignado"/>
+                    <h:outputText value="#{item.idEmpleado}"/>
+                    
+                    
+                    
+                </h:panelGrid>
+
+            </p:dataGrid>
+        </h:form>
+
+
+    </ui:define>
+</ui:composition>
+
+

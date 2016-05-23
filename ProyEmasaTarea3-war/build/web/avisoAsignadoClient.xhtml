@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+        
+    </ui:define>
+
+    <ui:define name="aviso">
+        <h:form>
+            <p:panelGrid columns="4" columnClasses="column" >
+                <p:outputLabel value="ID aviso: " /> 
+                <p:outputLabel value="#{avisoAsignado.aviso.idAviso}" /> 
+                <p:outputLabel value="Fecha entrada " />  
+                <p:outputLabel value="#{avisoAsignado.aviso.fechaEntrada}" />
+                <p:outputLabel value="Origen:  " />
+                <p:outputLabel value="#{avisoAsignado.aviso.origen}" />   
+                <p:outputLabel value="Fecha actualización  " />
+                <p:outputLabel value="#{avisoAsignado.his.historicoPK.fechaActualizacion}" /> 
+                <p:outputLabel value="Supervisor asignado " /> 
+                <p:outputLabel value="#{avisoAsignado.his.historicoPK.supervisor}" />   
+                <p:outputLabel  value="Descripción " />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.descripcion}"  /> 
+                </p:inplace>  
+                <p:outputLabel  value="Direccion " />
+                <p:inplace editor="true">
+                    <h:inputText value="#{avisoAsignado.his.direccion}"  /> 
+                </p:inplace> 
+                <p:outputLabel  value="Estado " />
+                <p:inplace editor="true">
+                    <h:inputText value="#{avisoAsignado.his.estado}"  /> 
+                </p:inplace> 
+                <p:outputLabel  value="Duplicado " />
+                <p:inplace editor="true">
+                    <h:inputText value="#{avisoAsignado.his.duplicado}"  /> 
+                </p:inplace> 
+                <p:outputLabel for="button" value="Fecha cierre:" />
+                <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
+                <p:outputLabel  value="Tipo de aviso" />
+                <p:inplace editor="true">
+                    <h:inputText value="#{avisoAsignado.his.tipoAviso}"  /> 
+                </p:inplace>     
+                <p:outputLabel  value="Causa" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.causa}"  /> 
+                </p:inplace>    
+                <p:outputLabel  value="Urgencia" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.urgencia}"  /> 
+                </p:inplace>    
+                <p:outputLabel  value="Ubicacion_gps" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.ubicacionGps}"  /> 
+                </p:inplace>   
+                <p:outputLabel  value="Red de agua" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.redAgua}"  /> 
+                </p:inplace>   
+                <p:outputLabel  value="Documentación adjunta" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{avisoAsignado.his.docAdjunto}"  /> 
+                </p:inplace>  
+            </p:panelGrid>
+            <p:separator />
+            <h:commandButton value="Modificar Aviso"  action="#{avisoAsignado.modificarAviso()}" styleClass="ui-priority-primary" />
+            <h:commandButton value="Volver"  action="bandejaVisitasClient.xhtml" styleClass="ui-priority-primary" />        <!-- volver al menu de empleado de mov. -->
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+        <h:form>
+            <p:commandLink value="Crear orden de trabajo"  action="#{boton.crearOT()}" />  
+            <p:commandLink value="Volver"  action="#{boton.opcionesAvisos()}" />  
+            
+        
+        </h:form>
+    </ui:define>
+
+    <ui:define name="aviso">
+        
+            
+                
+                        <h:form id="form">
+                            <p:growl id="msgs" showDetail="true" />
+
+                            <p:dataTable id="eventsDT" var="listOrd" value="#{controlOrdenTrabajo.listOrd}" resizableColumns="true" selectionMode="single" selection="#{controlOrdenTrabajo.ordSelected}" rowKey="#{listOrd}">
+                                <f:facet name="header" >
+                                    Ordenes de trabajo
+                                </f:facet>                     
+                                <p:ajax event="rowSelect" oncomplete="location.href='modificarOrdenTrabajoClient.xhtml';" listener="#{controlOrdenTrabajo.onRowSelect}" update=":form:msgs" />
+                                <p:ajax event="rowUnselect" listener="#{controlOrdenTrabajo.onRowUnselect}" update=":form:msgs" />
+
+                                <p:column headerText="ID Orden trabajo" sortBy="#{listOrd.idOrden}">
+                                    <h:outputText value="#{listOrd.idOrden}" />
+                                </p:column>
+                                <p:column headerText="ID Orden Aviso" sortBy="#{controlOrdenTrabajo.idAviso}">
+                                    <h:outputText value="#{controlOrdenTrabajo.idAviso}" />
+                                </p:column>
+
+                                <p:column headerText="Estado" sortBy="#{listOrd.estado}">
+                                    <h:outputText value="#{listOrd.estado}" />
+                                </p:column>
+                                
+                                 <p:column headerText="Brigada asignada" >
+                                     <h:outputText value="#{listOrd.numBrigada.numBrigada}"  />
+                                </p:column>
+                                
+                                <p:column headerText="Fecha creacion" >
+                                    <h:outputText value="#{listOrd.fechaCreacion}"  />
+                                </p:column>
+                                
+                              
+                               
+                                
+                                
+                            </p:dataTable>
+                            
+                            
+                        </h:form>
+                   
+           
+
+        
+    </ui:define>
+
+</ui:composition>

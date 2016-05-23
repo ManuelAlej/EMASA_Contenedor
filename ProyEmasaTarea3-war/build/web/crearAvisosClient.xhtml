@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="empleado">
+        
+    </ui:define>
+
+    <ui:define name="aviso">
+        <c:set var="who" value="${QuienEntra.entraComoCliente}"/>
+        <c:set var="bot" value="${QuienEntra.opmov}"/>
+        <h:form enctype="multipart/form-data">
+        
+        
+            <p:panelGrid id="aviso" columns="2">   
+                <p:outputLabel value="Nombre: " />
+                <p:inputText value="#{crearAvisos.nombre}"/>
+                <p:outputLabel value="DNI: " />
+                <p:inputText value="#{crearAvisos.dni}" />
+                <p:outputLabel value="Telefono: " />
+                <p:inputText value="#{crearAvisos.telefono}" />
+                <p:outputLabel value="E-mail: " />
+                <p:inputText value="#{crearAvisos.email}" />
+                <p:outputLabel value="Poliza: " />
+                <p:inputText value="#{crearAvisos.poliza}" />
+                <p:outputLabel value="Dirección: " />
+                <p:inputText value="#{crearAvisos.descripcion}" />
+                <p:outputLabel value="Causa: " />
+                <p:inputText value="#{crearAvisos.causa}" />
+                <p:outputLabel value="Descripcion: " />
+                <p:inputText value="#{crearAvisos.descripcion}" />
+                <p:outputLabel value="Urgencia: " rendered="${!who}"/>
+                <p:inputText value="#{crearAvisos.urgencia}" rendered="${!who}"/>
+                <p:outputLabel value="Tipo de aviso: " rendered="${!who}"/>
+                <p:inputText value="#{crearAvisos.tipoAviso}" rendered="${!who}"/>
+                <p:outputLabel value="Red de agua: " rendered="${!who}"/>
+                <p:inputText value="#{crearAvisos.redAgua}" rendered="${!who}"/> 
+                <h:inputFile value="Elegir ..." rendered="${!who}"/>  
+            </p:panelGrid>
+            <p:commandButton value="Crear" action="#{crearAvisos.crearAvisoNuevo()}" />
+            <p:commandButton value="Reset" update="aviso" process="@this" style="margin-right:20px;"  >
+                <p:resetInput target="aviso" />
+            </p:commandButton>
+            
+            
+        </h:form>
+        <h:form>
+        <p:commandButton  value="volver" action="#{QuienEntra.volver()}" rendered="${!who}" />
+        </h:form>
+    </ui:define>
+</ui:composition>

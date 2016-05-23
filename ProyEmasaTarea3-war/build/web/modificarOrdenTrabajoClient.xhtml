@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+        <h:form>
+            <h:commandLink value="Cancelar" action="#{ordenTrabajo.volver}"/> 
+            <h:commandLink value="Modificar orden de trabajo" action="#{modificarOrdTrabajo.modificarActuacion()}"/>
+            <h:commandLink value="Historial de actuaciones" action="#{modificarOrdTrabajo.listaActuaciones()}"/>  
+            <h:commandLink value="Cerrar orden de trabajo" action="#{modificarOrdTrabajo.cerrarOT()}"/>  
+            
+            
+            
+        </h:form>
+    </ui:define>
+
+    <ui:define name="aviso">
+        <h:form id="form">
+                         
+           
+           
+                
+            <p:growl id="msgs" showDetail="true" />
+            <p:panelGrid id="ot" columns="4">
+                <p:outputLabel value="Id_Orden: " />
+                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.idOrden}" />
+                <p:outputLabel value="Id Aviso: " />  
+                <p:outputLabel value="#{modificarOrdTrabajo.idAviso}" />
+                <p:outputLabel value="Supervisor: " />  
+                <p:outputLabel value="#{modificarOrdTrabajo.supervisor}" />
+                <p:outputLabel value="fecha_creacion" />
+                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.fechaCreacion}"/> 
+                <p:outputLabel value="Trabajo a realizar" />
+                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.trabajoARealizar}" />
+               
+                <p:outputLabel value="Brigada asignada" />
+                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.numBrigada.numBrigada}"/>
+                    
+                
+                <p:outputLabel value="Estado" />
+                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.estado}"/>
+                  
+                <p:outputLabel  value="Actualizaciones" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{modificarOrdTrabajo.actuacionesRealizadas}"  /> 
+                    </p:inplace> 
+                <p:outputLabel  value="Observaciones" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{modificarOrdTrabajo.actuacionesObservaciones}"  /> 
+                    </p:inplace> 
+                
+                
+            </p:panelGrid>     
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="stylesheet" href="css/VistaAvisosCss.css" />
+        
+        <title>
+            VISITAS
+        </title>
+    </h:head>
+
+    <h:body>
+
+        <c:choose>
+            <c:when test="#{controlVisitas.empleado}">
+                <div id="Container">
+                    <div id="SubContainer">
+                        <h:form id="form">
+                            <p:growl id="msgs" showDetail="true" />
+
+                            <p:dataTable id="eventsDT" var="visitas" value="#{controlVisitas.visitas}" resizableColumns="true" selectionMode="single" selection="#{controlVisitas.visitaSelected}" rowKey="#{visitas.fechaVisita}">
+                                <f:facet name="header" >
+                                    Visitas
+                                </f:facet>                     
+                                <p:ajax event="rowSelect" oncomplete="location.href='avisoAsignado.xhtml';" listener="#{controlVisitas.onRowSelect}" update=":form:msgs" />
+                                <p:ajax event="rowUnselect" listener="#{controlVisitas.onRowUnselect}" update=":form:msgs" />
+
+                                <p:column headerText="Fecha" sortBy="#{controlVisitas.getFecha(visitas.fechaVisita)}">
+                                    <h:outputText value="#{controlVisitas.getFecha(visitas.fechaVisita)}" />
+                                </p:column>
+                                
+                                <p:column headerText="Causa">
+                                    <h:outputText value="#{visitas.historico.causa}" />
+                                </p:column>
+                                <p:column headerText="Urgencia" sortBy="#{visitas.historico.urgencia}">
+                                    <h:outputText value="#{visitas.historico.urgencia}" />
+                                </p:column>
+
+                                <p:column headerText="Direccion">
+                                    <h:outputText value="#{visitas.historico.direccion}" />
+                                </p:column>
+                                <p:column headerText="GPS">
+                                    <h:outputText value="#{visitas.historico.ubicacionGps}" />
+                                </p:column>
+                            </p:dataTable>
+                        </h:form>
+                    </div>
+                </div>
+                <div>
+                    <h:form>
+                    <h:commandButton value="Crear Aviso" action="#{QuienEntra.OPmov()}"/>
+                    <h:commandButton value="Volver" action="loginClient.xhtml"/>
+                    </h:form>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <p>Debe salir de la aplicación si quiere entrar como otro usuario</p>
+            </c:otherwise>
+
+        </c:choose>
+
+    </h:body>
+</html>

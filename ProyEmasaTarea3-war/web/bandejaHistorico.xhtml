@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/Template.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="empleado">
+        
+    </ui:define>
+
+    <ui:define name="aviso">
+        
+                <h:form id="form">
+                    <p:growl id="msgs" showDetail="true" />
+                    <p:dataTable id="eventsDT" var="Historico" value="#{controlHistoricos.historicos}" resizableColumns="true" selectionMode="single" selection="#{controlHistoricos.historicoSelected}" rowKey="#{Historico}">
+                        
+                        <p:ajax event="rowSelect" oncomplete="location.href='HistDetalles.xhtml';" listener="#{controlHistoricos.onRowSelect}" update=":form:msgs" />
+                        <p:ajax event="rowUnselect" listener="#{controlHistoricos.onRowUnselect}" update=":form:msgs" />
+                        
+                        <p:column headerText="Fechar Inicio" >
+                            <h:outputText value="#{Historico.historicoPK.fechaActualizacion}" />
+                        </p:column>
+                        <p:column headerText="Estado" >
+                            <h:outputText value="#{Historico.estado}" />
+                        </p:column>
+                        <p:column headerText="Direccion" >
+                            <h:outputText value="#{Historico.direccion}" />
+                        </p:column>
+                        <p:column headerText="Descripcion" >
+                            <h:outputText value="#{Historico.descripcion}" />
+                        </p:column>
+                        
+                        
+                    </p:dataTable>
+                </h:form>
+        
+                
+           
+    </ui:define>
+
+</ui:composition>

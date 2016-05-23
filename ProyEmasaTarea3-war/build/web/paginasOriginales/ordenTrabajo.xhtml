@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Orden Trabajo </title>
+    </h:head>
+    <h:body>
+
+        <h:form id="form">
+            <p:growl id="msgs" showDetail="true" />
+            <table>
+                <tr> 
+                    <td> Supervisor  </td>
+                    <td> <p:outputLabel value="#{opcionesAviso.supervisor}"  />&nbsp;  </td>
+
+                </tr>                        
+                <tr>
+                    <td>Id_Orden: </td>
+                    <td><p:outputLabel value="#{ordenTrabajo.ID_aviso}"/></td>
+                </tr>
+                <tr>
+                    <td>fecha_creacion </td>
+                    <td> <p:outputLabel value="#{calendarioVista.fecha_actual}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" type="date" /> 
+                        </p:outputLabel> </td>
+                </tr>
+                <tr>
+                    <td>Trabajo a realizar </td>
+                    <td><p:inputTextarea rows="6" cols="33" value="#{ordenTrabajo.trabajo_realizar}" /></td>
+                </tr>
+
+                <tr>
+                    <td>Num_brigada </td>
+                    <td><p:inputText value="#{ordenTrabajo.num_Brigada}"/></td>
+                </tr>
+
+                <tr>
+                    <td>Estado</td>
+                    <td><p:outputLabel value="#{opcionesAviso.historicoReciente.estado}"/></td>
+                </tr>
+
+                <tr>
+
+
+
+                    <td><p:outputLabel for="inline" value="Fecha Finalización:" />
+                        <p:calendar id="inline" value="#{calendarioVista.date1}" mode="inline" /></td>
+
+                    <td> fecha de finalización:<p:outputLabel id="fecha_fin" value="#{calendarioVista.date1}"/>      </td>
+
+
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <h:commandButton value="Crear Orden de Trabajo" action="#{ordenTrabajo.crearOT()}"/>
+                    </td>
+                    <td>
+                        <h:commandButton value="Cancelar" action="#{boton.opcionesAvisos()}"/>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+
+
+
+
+
+    </h:body>
+</html>
+
