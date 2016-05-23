@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"  
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Opciones del aviso</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+           <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+          <p:printer target="avisoImpreso" />
+        </p:commandButton>
+            <table >
+                <h:panelGrid id="avisoImpreso" columns="2" columnClasses="column" cellpadding="5">
+
+                 <p:outputLabel value="ID aviso: " /> <p:outputLabel id="id_aviso" value=" #{opcionesAviso.aviso.idAviso}" /> 
+
+                <p:outputLabel value="Supervisor asignado: " /> <p:outputLabel id="ID_supervisor" value=" #{opcionesAviso.supervisor}" />      
+                <p:outputLabel value="Fecha de entrada: " /> <p:outputLabel id="fecha_entrada" value=" #{opcionesAviso.aviso.fechaEntrada}" > <f:convertDateTime pattern="MM/dd/yyyy" />   </p:outputLabel> 
+                <p:outputLabel value="Origen: " /> <p:outputLabel id="origen" value=" #{opcionesAviso.aviso.origen}" /> 
+                <p:outputLabel value="Dni cliente: " /> <p:outputLabel id="DNI_cliente" value=" #{opcionesAviso.aviso.dni.dni}" /> 
+                 <p:outputLabel value="Ultimo historico: " /> <p:outputLabel id="Ultima_version" value=" #{opcionesAviso.his.historicoPK.fechaActualizacion}" > <f:convertDateTime pattern="MM/dd/yyyy" />   </p:outputLabel>    
+
+                 <p:outputLabel value="Relacionado con: " /> <p:outputLabel id="relacionado" value="#{opcionesAviso.getrelacionado()}" />     
+
+                 <p:outputLabel  value="Descripción " />
+                <p:inplace editor="true"> 
+                    <h:inputTextarea value="#{opcionesAviso.his.descripcion}"  /> 
+                </p:inplace> 
+                    
+                <p:outputLabel  value="Direccion " />
+                <p:inplace editor="true">
+                    <p:inputText value="#{opcionesAviso.his.direccion}"  /> 
+                </p:inplace> 
+                <p:outputLabel  value="Estado " />
+                <p:inplace editor="true">
+                    <p:inputText  value="#{opcionesAviso.his.estado}"  /> 
+                </p:inplace> 
+                <p:outputLabel  value="Duplicado " />
+                <p:inplace editor="true">
+                    <p:inputText  value="#{opcionesAviso.his.duplicado}"  /> 
+                </p:inplace> 
+
+                <p:outputLabel for="button" value="Fecha cierre:" />
+                <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
+
+                <p:outputLabel  value="Tipo de aviso" />
+                <p:inplace editor="true">
+                    <p:inputText value="#{opcionesAviso.his.tipoAviso}"  /> 
+                </p:inplace>     
+
+                <p:outputLabel  value="Causa" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{opcionesAviso.his.causa}"  /> 
+                </p:inplace>    
+
+                <p:outputLabel  value="Urgencia" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{opcionesAviso.his.urgencia}"  /> 
+                </p:inplace>    
+
+                <p:outputLabel  value="Ubicacion_gps" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{opcionesAviso.his.ubicacionGps}"  /> 
+                </p:inplace>   
+
+
+                <p:outputLabel  value="Red de agua" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{opcionesAviso.his.redAgua}"  /> 
+                </p:inplace>   
+
+                <p:outputLabel  value="Documentación adjunta" />
+                <p:inplace editor="true">
+                    <h:inputTextarea value="#{opcionesAviso.his.docAdjunto}"  /> 
+
+                </p:inplace>       
+
+
+
+
+
+            </h:panelGrid >
+            
+            </table>
+
+            <h:commandButton value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    
+
+            <h:commandButton value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
+
+
+            <h:commandButton value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
+
+            <h:commandButton value="Reasignar aviso" id="reasignar_aviso" action="#{boton.reasignarAviso()}"  />
+
+            <h:commandButton value="Ver avisos relacionados" id="aviso_relacionado"  action="#{boton.avisosRelacionados()}" />
+            
+            <h:commandButton value="Bandeja de entrada" id="bandejaEntrada"  action="#{boton.volverBandeja()}"  />
+
+
+
+        </h:form>
+
+    </h:body>
+</html>
+

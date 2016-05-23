@@ -111,7 +111,7 @@ public class ControlOrdenTrabajo implements Serializable{
     
     public void init()
     {
-        List<OrdTrabajo> listOrden=new ArrayList<OrdTrabajo>();
+        
         listOrd= new ArrayList<>();
       /*  ordHelper = new OrdTrabajo();
         ordHelper.setEstado("abierto");
@@ -121,7 +121,7 @@ public class ControlOrdenTrabajo implements Serializable{
         ordHelper.setNumBrigada(new Brigada(2)); 
         aviso.getHistoricoReciente().getOrdTrabajoCollection().add(ordHelper); */
         
-        listOrden=(List<OrdTrabajo>) aviso.getHistoricoReciente().getOrdTrabajoCollection();
+        listOrd=(List<OrdTrabajo>) aviso.getHistoricoReciente().getOrdTrabajoCollection();
         
       
         

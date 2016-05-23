@@ -29,7 +29,7 @@ import javax.inject.Inject;
  * @author malex
  */
 @Named(value = "ordenTrabajo")
-@RequestScoped
+@SessionScoped
 
 public class OrdenTrabajo implements Serializable {
 
@@ -217,7 +217,7 @@ public class OrdenTrabajo implements Serializable {
 
         ordTrabajoNegocio.anadirOrden(ord);
 
-        //aviso.getHistoricoReciente().getOrdTrabajoCollection().add(ord);
+        aviso.getHistoricoReciente().getOrdTrabajoCollection().add(ord);
 
         return "bandejaOrdenTrabajo.xhtml";
 

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Aviso Operario</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+
+            <table>
+
+                <h:panelGrid columns="2" columnClasses="column" cellpadding="5">
+
+                    <p:outputLabel value="ID aviso: " /> <p:outputLabel value="#{avisoAsignado.aviso.idAviso}" /> 
+
+                    <p:outputLabel value="Fecha entrada " />  <p:outputLabel value="#{avisoAsignado.aviso.fechaEntrada}" ><f:convertDateTime pattern="MM/dd/yyyy" />   </p:outputLabel>
+
+                    <p:outputLabel value="Origen:  " />  <p:outputLabel value="#{avisoAsignado.aviso.origen}" />   
+
+                    <p:outputLabel value="Fecha actualización  " />  <p:outputLabel value="#{avisoAsignado.his.historicoPK.fechaActualizacion}"> <f:convertDateTime pattern="MM/dd/yyyy" />   </p:outputLabel> 
+
+                    <p:outputLabel value="Supervisor asignado " />  <p:outputLabel value="#{avisoAsignado.his.historicoPK.supervisor}" />   
+
+                    <p:outputLabel  value="Descripción " />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.descripcion}"  /> 
+                    </p:inplace>  
+                    <p:outputLabel  value="Direccion " />
+                    <p:inplace editor="true">
+                        <h:inputText value="#{avisoAsignado.his.direccion}"  /> 
+                    </p:inplace> 
+                    <p:outputLabel  value="Estado " />
+                    <p:inplace editor="true">
+                        <h:inputText value="#{avisoAsignado.his.estado}"  /> 
+                    </p:inplace> 
+                    <p:outputLabel  value="Duplicado " />
+                    <p:inplace editor="true">
+                        <h:inputText value="#{avisoAsignado.his.duplicado}"  /> 
+                    </p:inplace> 
+                    <p:outputLabel for="button" value="Fecha cierre:" />
+                    <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
+
+                    <p:outputLabel  value="Tipo de aviso" />
+                    <p:inplace editor="true">
+                        <h:inputText value="#{avisoAsignado.his.tipoAviso}"  /> 
+                    </p:inplace>     
+
+                    <p:outputLabel  value="Causa" />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.causa}"  /> 
+                    </p:inplace>    
+
+                    <p:outputLabel  value="Urgencia" />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.urgencia}"  /> 
+                    </p:inplace>    
+
+                    <p:outputLabel  value="Ubicacion_gps" />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.ubicacionGps}"  /> 
+                    </p:inplace>   
+                    <p:outputLabel  value="Red de agua" />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.redAgua}"  /> 
+                    </p:inplace>   
+
+                    <p:outputLabel  value="Documentación adjunta" />
+                    <p:inplace editor="true">
+                        <h:inputTextarea value="#{avisoAsignado.his.docAdjunto}"  /> 
+
+                    </p:inplace>  
+
+                    <h:commandButton value="Modificar Aviso"  action="#{avisoAsignado.modificarAviso()}" styleClass="ui-priority-primary" />
+
+                    <h:commandButton value="Volver"  action="bandejaVisitas.xhtml" styleClass="ui-priority-primary" />        <!-- volver al menu de empleado de mov. -->
+
+                </h:panelGrid>   
+
+            </table>
+
+        </h:form>
+
+    </h:body>
+</html>
+
