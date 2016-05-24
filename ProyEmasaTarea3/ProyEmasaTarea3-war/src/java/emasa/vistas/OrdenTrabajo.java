@@ -33,19 +33,23 @@ import javax.inject.Inject;
 
 public class OrdenTrabajo implements Serializable {
 
-   
     @Inject
     private OpcionesAviso aviso;
+
     @EJB
     OrdTrabajoNegocio ordTrabajoNegocio;
+
     @EJB
     BrigadaNegocio brigadaNegocio;
+
     private Integer brigadaSelect;
     private String estado = "";
     private String trabajo_realizar;
     private List<Brigada> brigadas;
     private Brigada brigada;
-     private int ID_Orden;
+    private int ID_Orden;
+    private OrdTrabajo ord;
+    List<OrdTrabajo> orden_trabajo;
 
     public String getEstado() {
         return estado;
@@ -79,8 +83,6 @@ public class OrdenTrabajo implements Serializable {
     public void setBrigadaSelect(Integer brigadaSelect) {
         this.brigadaSelect = brigadaSelect;
     }
-
-   
 
     public OpcionesAviso getAviso() {
         return aviso;
@@ -130,8 +132,6 @@ public class OrdenTrabajo implements Serializable {
         this.brigadas = brigadas;
     }
 
-    List<OrdTrabajo> orden_trabajo;
-
     public List<OrdTrabajo> getOrden_trabajo() {
         return orden_trabajo;
     }
@@ -147,7 +147,6 @@ public class OrdenTrabajo implements Serializable {
     public void setOrd(OrdTrabajo ord) {
         this.ord = ord;
     }
-    private OrdTrabajo ord;
 
     public int getID_aviso() {
         return ID_Orden;
@@ -156,8 +155,6 @@ public class OrdenTrabajo implements Serializable {
     public void setID_aviso(int ID_aviso) {
         this.ID_Orden = ID_aviso;
     }
-
-   
 
     /**
      * Creates a new instance of Orden_trabajo
@@ -176,8 +173,6 @@ public class OrdenTrabajo implements Serializable {
         orden_trabajo = new ArrayList<>();
         brigadasList = new ArrayList<>();
 
-        
-
         brigadas = brigadaNegocio.buscarBrigadas();
 
         //orden_trabajo.add(new OrdTrabajo((integer)*10+1));
@@ -194,26 +189,19 @@ public class OrdenTrabajo implements Serializable {
     }
 
     public String crearOT() {
-            
+
         ID_Orden = (int) (Math.random() * 1000 + 1);
-            
-            brigada = brigadaNegocio.buscarBrigada(brigadaSelect);
 
-            System.out.println(brigada);
+        brigada = brigadaNegocio.buscarBrigada(brigadaSelect);
 
-            ord = new OrdTrabajo(null, new Date(), trabajo_realizar, brigada, "abierto");
-            
-            
-            System.out.println(aviso.getHistoricoReciente().getAviso().getIdAviso());
-            System.out.println(aviso.getAviso().getIdAviso());
-           
-        
-            
-       
+        System.out.println(brigada);
+
+        ord = new OrdTrabajo(null, new Date(), trabajo_realizar, brigada, "abierto");
+
+        System.out.println(aviso.getHistoricoReciente().getAviso().getIdAviso());
+        System.out.println(aviso.getAviso().getIdAviso());
 
         ord.setHistorico(aviso.getHistoricoReciente());
-        
-       
 
         ordTrabajoNegocio.anadirOrden(ord);
 

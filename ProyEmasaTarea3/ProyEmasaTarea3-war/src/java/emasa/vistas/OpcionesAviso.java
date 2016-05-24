@@ -25,15 +25,12 @@ import javax.inject.Inject;
 @Named(value = "opcionesAviso")
 @SessionScoped
 public class OpcionesAviso implements Serializable {
-    
+
     @EJB
     private AvisoNegocio avisonegocio;
-    
-     @EJB
-    private HistoricoNegocio historicoNegocio;
-     
-     
 
+    @EJB
+    private HistoricoNegocio historicoNegocio;
 
     @Inject
     private ControlAvisos datos;
@@ -110,8 +107,7 @@ public class OpcionesAviso implements Serializable {
 
     @Inject
     private CalendarioVista calendario;
-    
-    
+
     public ControlAvisos getDatos() {
         return datos;
     }
@@ -120,8 +116,6 @@ public class OpcionesAviso implements Serializable {
         this.datos = datos;
     }
 
-
-
     public Historico getHis_nuevo() {
         return his_nuevo;
     }
@@ -129,7 +123,6 @@ public class OpcionesAviso implements Serializable {
     public void setHis_nuevo(Historico his_nuevo) {
         this.his_nuevo = his_nuevo;
     }
-  
 
     public CalendarioVista getCalendario() {
         return calendario;
@@ -146,7 +139,7 @@ public class OpcionesAviso implements Serializable {
         aviso = datos.getAvisoSelected();
         supervisor = datos.getHistorico(aviso).getHistoricoPK().getSupervisor();
         cliente = datos.getAvisoSelected().getDni();
-        historicos=(List<Historico>) datos.getAvisoSelected().getHistoricoCollection();
+        historicos = (List<Historico>) datos.getAvisoSelected().getHistoricoCollection();
         his = datos.getHistorico(aviso);
 
         if (his.getDescripcion() == null) {
@@ -203,8 +196,6 @@ public class OpcionesAviso implements Serializable {
 
     private String his_descripcion;
 
-  
-
     public Historico getHistoricoReciente() {
         Historico reciente;
 
@@ -248,14 +239,8 @@ public class OpcionesAviso implements Serializable {
         }
 
         his = getHistoricoReciente();
-        
-        
-        
-        historicoNegocio.persist(his);
-        
-       
-        
-        
+
+        historicoNegocio.crearHistorico(his);
 
         return "avisoClient.xhtml";
 
@@ -272,10 +257,8 @@ public class OpcionesAviso implements Serializable {
     }
     private String relacionado;
 
-    
     public void setRelacionado(String relacionado) {
         this.relacionado = relacionado;
     }
-
 
 }
