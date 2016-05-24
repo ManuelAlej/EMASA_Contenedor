@@ -8,6 +8,7 @@ package emasa.vistas;
 import emasa.entidades.Actuaciones;
 import emasa.entidades.ActuacionesPK;
 import emasa.entidades.Brigada;
+import emasa.entidades.OrdTrabajo;
 import emasa.negocio.ActuacionesNegocio;
 import emasa.negocio.BrigadaNegocio;
 import emasa.negocio.OrdTrabajoNegocio;
@@ -32,6 +33,7 @@ public class ModificarOrdTrabajo implements Serializable {
     @Inject
     private ControlOrdenTrabajo ord;
 
+   
     
     @EJB
     OrdTrabajoNegocio ordTrabajoNegocio;

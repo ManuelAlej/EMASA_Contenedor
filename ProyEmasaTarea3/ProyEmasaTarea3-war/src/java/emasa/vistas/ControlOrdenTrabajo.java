@@ -30,10 +30,10 @@ import org.primefaces.event.UnselectEvent;
  * @author malex
  */
 @Named(value = "controlOrdenTrabajo")
-@RequestScoped
+@SessionScoped
 public class ControlOrdenTrabajo implements Serializable{
 
-    
+  
 
     
     private Integer idAviso;
@@ -127,6 +127,7 @@ public class ControlOrdenTrabajo implements Serializable{
         
         idAviso=aviso.getAviso().getIdAviso();
         sup=aviso.getSupervisor();
+       
         
         
     }

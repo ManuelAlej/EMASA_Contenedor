@@ -8,6 +8,7 @@ package emasa.vistas;
 import emasa.entidades.Aviso;
 import emasa.entidades.Empleado;
 import emasa.entidades.Historico;
+import emasa.entidades.HistoricoPK;
 import emasa.negocio.AvisoNegocio;
 import emasa.negocio.EmpleadoNegocio;
 import emasa.negocio.HistoricoNegocio;
@@ -30,7 +31,7 @@ import javax.inject.Inject;
 public class SeleccionarSupervisor implements Serializable {
     private Empleado e = new Empleado();
     private List<Empleado> supervisoresList;
-    private String idSup;
+    private Integer idSup;
     private Integer idAviso;
      @EJB
     private EmpleadoNegocio supervisorEJB;
@@ -52,11 +53,11 @@ public class SeleccionarSupervisor implements Serializable {
         return supervisoresList;
     }
     
-    public String getIdSup() {
+    public Integer getIdSup() {
         return idSup;
     }
 
-    public void setIdSup(String idSup) {
+    public void setIdSup(Integer idSup) {
         this.idSup = idSup;
     }
     
@@ -168,12 +169,16 @@ public class SeleccionarSupervisor implements Serializable {
         aviso = opciones_aviso.getAviso(); //cojo el aviso
         
         //actualizo el supervisor del aviso
-        Historico hist = opciones_aviso.getHistoricoReciente();
+        Historico hist = new Historico();
+        hist.setHistoricoPK(new HistoricoPK(aviso.getIdAviso(), new Date(),idSup));
+        
+        hist.copiarHist(opciones_aviso.getHistoricoReciente());
+      /*          opciones_aviso.getHistoricoReciente();
         hist.getHistoricoPK().setSupervisor(Integer.parseInt(idSup));
         hist.getHistoricoPK().setFechaActualizacion(new Date());
-        historicoEJB.persist(hist);    // persist al historico
+     */  historicoEJB.persist(hist);    // persist al historico
        // aviso.getHistoricoCollection().add(hist);
-      //  avisoEJB.actualizarAviso(aviso);
+      // avisoEJB.actualizarAviso(aviso);
         return "bandejaAvisosClient.xhtml"; 
 
     }

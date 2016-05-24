@@ -19,10 +19,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 
 @Named(value = "opcionesAviso")
-@RequestScoped
+@SessionScoped
 public class OpcionesAviso implements Serializable {
     
     @EJB

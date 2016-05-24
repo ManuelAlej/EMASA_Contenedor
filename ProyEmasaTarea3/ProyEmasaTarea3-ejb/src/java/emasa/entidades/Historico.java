@@ -91,6 +91,25 @@ public class Historico implements Serializable {
         this.duplicado = duplicado;
     }
 
+    public void copiarHist(Historico h) {
+        this.descripcion = h.descripcion;
+        this.direccion = h.direccion;
+        this.estado = h.estado;
+        this.duplicado = h.duplicado;
+        this.fechaCierre = h.fechaCierre;
+        this.tipoAviso = h.tipoAviso;
+        this.causa = h.causa;
+        this.urgencia = h.urgencia;
+        this.ubicacionGps = h.ubicacionGps;
+        this.redAgua = h.redAgua;
+        this.docAdjunto =h.docAdjunto;
+        this.aviso = h.aviso;
+        this.idEmpleado = h.idEmpleado;
+        this.visitas = h.visitas;
+        this.ordenesTrabajo = h.ordenesTrabajo;
+        h.ordenesTrabajo=null;
+    }
+
     public Historico(Integer idAviso, Date fechaActualizacion, Integer supervisor) {
         this.historicoPK = new HistoricoPK(idAviso, fechaActualizacion, supervisor);
     }

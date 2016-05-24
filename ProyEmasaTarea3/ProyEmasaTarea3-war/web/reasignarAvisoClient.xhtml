@@ -16,7 +16,7 @@
 
                 <h:form>
                    
-                    <h1><h:outputText value="Lista de Supervisores"/></h1>
+                    <h:outputText value="Lista de Supervisores"/>
                     <p:dataTable value="#{seleccionarSupervisor.supervisoresList}" var="item" >
                        <!-- <p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml';" listener="#{controlAvisos.onRowSelect}" update=":form:msgs" />
                         <p:ajax event="rowUnselect" listener="#{controlAvisos.onRowUnselect}" update=":form:msgs" /> -->
@@ -49,7 +49,7 @@
                     <p:outputLabel value="Id del Supervisor: " ></p:outputLabel>
             <h:inputText value="#{seleccionarSupervisor.idSup}" ></h:inputText>        
             <p:commandButton value="Cambiar Asignación"   id="Cambiar_asig"  action="#{seleccionarSupervisor.cambiarAsignacion()}" />
-            <br/>
+            
             <p:commandButton value="Cancelar"  id="cancelar" action="#{seleccionarSupervisor.b_cancelar()}"  />
             <!-- <p:commandButton value="añadir" action="#{seleccionarSupervisor.createSupervisor()}"/> -->
            
