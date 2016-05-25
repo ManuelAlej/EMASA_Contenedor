@@ -176,7 +176,7 @@ public class SeleccionarSupervisor implements Serializable {
       /*          opciones_aviso.getHistoricoReciente();
         hist.getHistoricoPK().setSupervisor(Integer.parseInt(idSup));
         hist.getHistoricoPK().setFechaActualizacion(new Date());
-     */  historicoEJB.crearHistorico(hist);   // persist al historico
+     */  historicoEJB.persist(hist);    // persist al historico
        // aviso.getHistoricoCollection().add(hist);
       // avisoEJB.actualizarAviso(aviso);
         return "bandejaAvisosClient.xhtml"; 

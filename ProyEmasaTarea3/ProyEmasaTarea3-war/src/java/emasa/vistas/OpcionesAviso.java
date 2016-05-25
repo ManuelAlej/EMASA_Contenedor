@@ -18,19 +18,23 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 @Named(value = "opcionesAviso")
-@SessionScoped
+@ViewScoped
 public class OpcionesAviso implements Serializable {
-
+    
     @EJB
-    private AvisoNegocio avisonegocio;
-
-    @EJB
+    private AvisoNegocio avisoNegocio;
+    
+     @EJB
     private HistoricoNegocio historicoNegocio;
+     
+     
+
 
     @Inject
     private ControlAvisos datos;
@@ -107,7 +111,8 @@ public class OpcionesAviso implements Serializable {
 
     @Inject
     private CalendarioVista calendario;
-
+    
+    
     public ControlAvisos getDatos() {
         return datos;
     }
@@ -116,6 +121,8 @@ public class OpcionesAviso implements Serializable {
         this.datos = datos;
     }
 
+
+
     public Historico getHis_nuevo() {
         return his_nuevo;
     }
@@ -123,6 +130,7 @@ public class OpcionesAviso implements Serializable {
     public void setHis_nuevo(Historico his_nuevo) {
         this.his_nuevo = his_nuevo;
     }
+  
 
     public CalendarioVista getCalendario() {
         return calendario;
@@ -136,11 +144,21 @@ public class OpcionesAviso implements Serializable {
 
     @PostConstruct
     public void init() {
-        aviso = datos.getAvisoSelected();
-        supervisor = datos.getHistorico(aviso).getHistoricoPK().getSupervisor();
-        cliente = datos.getAvisoSelected().getDni();
-        historicos = (List<Historico>) datos.getAvisoSelected().getHistoricoCollection();
-        his = datos.getHistorico(aviso);
+       aviso =(Aviso)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("avisoSelected");
+        /**************************************************************
+         * ***************************************************
+         * ************
+         */
+     
+       // Integer a= Integer.parseInt(ultimoHist)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idAv");
+
+       // System.out.println("//////////**************"+a);
+        ControlAvisos s=new ControlAvisos();
+        supervisor = s.getHistorico(aviso).getHistoricoPK().getSupervisor();
+             
+        cliente = aviso.getDni();
+        historicos=(List<Historico>) aviso.getHistoricoCollection();
+        his =s.getHistorico(aviso);
 
         if (his.getDescripcion() == null) {
             his.setDescripcion("Vacio");
@@ -196,6 +214,8 @@ public class OpcionesAviso implements Serializable {
 
     private String his_descripcion;
 
+  
+
     public Historico getHistoricoReciente() {
         Historico reciente;
 
@@ -239,8 +259,14 @@ public class OpcionesAviso implements Serializable {
         }
 
         his = getHistoricoReciente();
-
-        historicoNegocio.crearHistorico(his);
+        
+        
+        
+        historicoNegocio.persist(his);
+        
+       
+        
+        
 
         return "avisoClient.xhtml";
 
@@ -257,8 +283,10 @@ public class OpcionesAviso implements Serializable {
     }
     private String relacionado;
 
+    
     public void setRelacionado(String relacionado) {
         this.relacionado = relacionado;
     }
+
 
 }

@@ -5,6 +5,7 @@
  */
 package emasa.negocio;
 
+
 import emasa.entidades.Aviso;
 import emasa.entidades.Empleado;
 import java.util.List;
@@ -21,31 +22,26 @@ import javax.persistence.TypedQuery;
 @Stateless
 @LocalBean
 public class AvisoNegocio {
-
-    @PersistenceContext(unitName = "ProyEmasaTarea3-ejbPU")
+@PersistenceContext(unitName = "ProyEmasaTarea3-ejbPU")
     EntityManager em;
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 
-    public void actualizarAviso(Aviso a) {
+public void actualizarAviso(Aviso a) {
         em.merge(a);
     }
 
-    public List<Aviso> buscarAvisos(Empleado e) {
-        TypedQuery<Aviso> query = em.createNamedQuery("lista.avisos", Aviso.class);
-        query.setParameter("idEmpleado", e.getIdEmpleado());
-
+ public List<Aviso> buscarAvisos(Empleado e){
+        TypedQuery<Aviso> query=em.createNamedQuery("lista.avisos",Aviso.class);
+        query.setParameter("idEmpleado", e.getIdEmpleado() );
+        
         return query.getResultList();
-
+        
+        
     }
-
-    public void crearAviso(Aviso a) {
-        em.persist(a);
-    }
-
-    public List<Aviso> buscarAvisos() {
-        TypedQuery<Aviso> query = em.createNamedQuery("aviso.buscartodos", Aviso.class);
-        return query.getResultList();
-
+  public Aviso buscarAviso(Integer idAviso) {
+       
+        Aviso aviso=em.find(Aviso.class, idAviso);
+        return aviso;
     }
 }

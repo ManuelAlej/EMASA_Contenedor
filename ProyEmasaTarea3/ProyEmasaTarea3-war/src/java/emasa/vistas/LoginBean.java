@@ -5,6 +5,7 @@
  */
 package emasa.vistas;
 
+import emasa.entidades.Aviso;
 import emasa.entidades.Datos;
 import emasa.entidades.Empleado;
 import emasa.negocio.EmpleadoNegocio;
@@ -160,5 +161,5 @@ public class LoginBean implements Serializable {
         //logeado = false;
 
     }
-
+   
 }

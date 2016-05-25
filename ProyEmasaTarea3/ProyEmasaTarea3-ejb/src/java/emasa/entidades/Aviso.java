@@ -17,10 +17,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "AVISO")
 @NamedQueries({
-    @NamedQuery(name="aviso.buscartodos",
-                query="SELECT c FROM Aviso c"),
+    
     @NamedQuery(name="lista.avisos",
-                query="SELECT l FROM Aviso l WHERE l.idEmpleado.idEmpleado = :idEmpleado "),       
+                query="SELECT l FROM Aviso l WHERE l.idEmpleado.idEmpleado = :idEmpleado "),
+    
+        
 })
 public class Aviso implements Serializable {
 

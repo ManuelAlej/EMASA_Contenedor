@@ -20,6 +20,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
@@ -31,7 +32,7 @@ import org.primefaces.event.UnselectEvent;
  */
 
 @Named(value="controlAvisos")
-@SessionScoped
+@ViewScoped
 public class ControlAvisos implements Serializable{
 
     @Inject
@@ -74,7 +75,10 @@ public class ControlAvisos implements Serializable{
     public void setLogin(LoginBean login) {
         this.login = login;
     }
-
+    public String test(){
+        
+        return "avisoClient.xhtml?idAv=#{avisos.idAviso}";
+    }
     public Empleado getEmpleado() {
         return empleado;
     }
@@ -122,12 +126,21 @@ public class ControlAvisos implements Serializable{
     public Aviso getAvisoSelected() {
         return avisoSelected;
     }
-
+/****************************************************************************
+ * ************************************************
+ * *******************************************
+ * @param avisoSelected 
+ */
     public void setAvisoSelected(Aviso avisoSelected) {
         this.avisoSelected = avisoSelected;
+        System.out.println("************************"+avisoSelected);
+         FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("avisoSelected", avisoSelected);
+        System.out.println("************************"+(Aviso)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("avisoSelected"));
+        
     }
     
     public void onRowSelect(SelectEvent event) {
+        
         FacesMessage msg = new FacesMessage("Aviso Seleccionado", String.valueOf(((Aviso) event.getObject()).getIdAviso()));  
     }
  
@@ -140,6 +153,10 @@ public class ControlAvisos implements Serializable{
        return formateador.format(fecha);
     }
    
+    public String cambiar(Aviso aviso) {
+        FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("avisoSelected", aviso);
+        return "avisoClient.xhtml";
+}
      
 
 }

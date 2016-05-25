@@ -22,13 +22,10 @@ public class HistoricoNegocio {
     @PersistenceContext(unitName = "ProyEmasaTarea3-ejbPU")
     private EntityManager em;
 
-    public void crearHistorico(Historico h) {
+    public void persist(Historico h) {
         em.persist(h);
     }
-
-    public void actualizarHistorico(Historico h) {
-        em.merge(h);
-    }
+    
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
