@@ -46,5 +46,8 @@ public void actualizarAviso(Aviso a) {
         Aviso aviso=em.find(Aviso.class, idAviso);
         return aviso;
     }
+  public void persist(Aviso aviso){
+      em.persist(aviso);
+  }
  
 }

@@ -30,7 +30,7 @@ public class CalendarioVista implements Serializable {
     private Date date1;
     private Date date2;
     private Date date3;
-
+    private Date fechaAsignacion;
     public Date getDate2() {
         return date2;
     }
@@ -95,6 +95,14 @@ public class CalendarioVista implements Serializable {
 
         requestContext.update("form:display");
         requestContext.execute("PF('dlg').show()");
+    }
+
+    public Date getFechaAsignacion() {
+        return fechaAsignacion;
+    }
+
+    public void setFechaAsignacion(Date fechaAsignacion) {
+        this.fechaAsignacion = fechaAsignacion;
     }
 
 }

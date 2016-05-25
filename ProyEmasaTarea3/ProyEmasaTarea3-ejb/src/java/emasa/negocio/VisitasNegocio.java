@@ -6,6 +6,7 @@
 package emasa.negocio;
 
 import emasa.entidades.Brigada;
+import emasa.entidades.Empleado;
 import emasa.entidades.Visitas;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -25,17 +26,17 @@ public class VisitasNegocio {
     @PersistenceContext(unitName = "ProyEmasaTarea3-ejbPU")
     private EntityManager em;
 
-    public void persist(Object object) {
-        em.persist(object);
+    public void persist(Visitas visita) {
+        em.persist(visita);
     }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
-    public List<Visitas> buscarVisitas()
+    public List<Visitas> buscarVisitas(Empleado e)
     {
          TypedQuery<Visitas> query=em.createNamedQuery("visitas.buscartodas",Visitas.class);
-    
+         query.setParameter("idEmpleado", e.getIdEmpleado() );
         
         return query.getResultList();
         

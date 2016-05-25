@@ -9,23 +9,31 @@ package emasa.vistas;
 import emasa.entidades.Aviso;
 import emasa.entidades.Cliente;
 import emasa.entidades.Datos;
+import emasa.entidades.Empleado;
 import emasa.entidades.Historico;
 import emasa.entidades.HistoricoPK;
+import emasa.negocio.AvisoNegocio;
 import emasa.negocio.ClienteNegocio;
+import emasa.negocio.EmpleadoNegocio;
+import emasa.negocio.HistoricoNegocio;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.model.UploadedFile;
 
 
 /**
  *
- * @author Adrian
+ * @author Adrian y Lupi
  */
 @Named(value = "crearAvisos")
 @SessionScoped
@@ -38,7 +46,7 @@ public class CrearAvisos implements Serializable {
     private String poliza="";
     private String email="";
     private String dni="";
-    private int idAviso = 0;
+    private int idAviso;
     private String fecha="";
     private String origen="";
     private String descripcion="";
@@ -49,29 +57,54 @@ public class CrearAvisos implements Serializable {
     private String  gps="";
     private String  redAgua="";
     private String  adjunto="";
+    private UploadedFile file;
     private Historico historico;
+    
     @Inject
     private LoginBean login;
-    @Inject 
-    private Datos datos;
+    
     private List<Cliente> clients;
     private List<Aviso> avisos;
+    
     @EJB
     private ClienteNegocio clientEJB;
+    
+    @EJB
+    private AvisoNegocio avisoEJB;
+    
+    @EJB
+    private HistoricoNegocio historicoEJB;
+    
+    @EJB
+    private EmpleadoNegocio empleadoEJB;
+
+    
+    public void upload() {  
+        FacesMessage msg = new FacesMessage("Ok", "Fichero " + file.getFileName() + " subido correctamente.");
+    	FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 
     public String getUrgencia() {
         return urgencia;
     }
 
+    
     public void setUrgencia(String urgencia) {
         this.urgencia = urgencia;
         
     }
     @PostConstruct
     public void init(){
-        clients=datos.getClientes();
-        avisos=datos.getAvisos();
-        
+        //clients=datos.getClientes();
+        //avisos=datos.getAvisos();   
     }
     
 
@@ -219,10 +252,6 @@ public class CrearAvisos implements Serializable {
     }
     
     public String crearAvisoNuevo(){
-        //crear 3 listas, una para ecliente, otra para aviso y otra para historico----< Lupi
-        
-        
-        
         //----Adri------incluir cliente en historial----->
         //comprobar que si ponemos un set null, no pete
         
@@ -248,74 +277,63 @@ public class CrearAvisos implements Serializable {
            newClient.setTelefono(null);
            
        }
-       clientEJB.addClient(newClient);
+       clientEJB.addClient(newClient);      
+       //---hasta aqui Adri----  
         
-       
-       
+        //crear aviso
+        Aviso newAviso= new Aviso();
+        //newAviso.setIdAviso(1);
+        newAviso.setIdAviso(null);
+        newAviso.setFechaEntrada(new Date());
+        newAviso.setIdEmpleado(login.getUsr());
         
-       //---hasta aqui Adri----   
-        
-        
-        
-        
-        
-        
-        
-        
-        
-       
-      
-        
-        nuevoAviso=new Aviso();
-        
-        nuevoAviso.setDni(newClient);
-        //aqui pongo el empleado
-        nuevoAviso.setIdEmpleado(login.getUsr());
-        //fecha
-        Date date = new Date();
-        nuevoAviso.setFechaEntrada(date);
-        
-        
-        nuevoAviso.setIdAviso(idAviso);
-        if(login.getCargoUsuario().equals("SAT")){
-            nuevoAviso.setOrigen("SAT");
-            
-        }else if(login.getCargoUsuario().equals("OPmov")){
-            nuevoAviso.setOrigen("OPmov");
-        }else{
-            nuevoAviso.setOrigen("Cliente");
+        if(login.getCargoUsuario() == null){
+            newAviso.setOrigen("Cliente");
+        }
+        else{
+            if(login.getCargoUsuario().equals("SAT")){
+                newAviso.setOrigen("SAT"); 
+            }
+            else if(login.getCargoUsuario().equals("OPmov")){
+                newAviso.setOrigen("OPmov");
+            }
         }
         
+        newAviso.setDni(newClient);  
         
-        historico=new Historico();
-        historico.setCausa(causa);
-        historico.setDescripcion(descripcion);
-        historico.setDireccion(direccion);
-        historico.setDocAdjunto(adjunto);
-        historico.setDuplicado(false);
-        historico.setEstado("Abierto");
+        avisoEJB.persist(newAviso);//persistir el aviso
         
-        //historico pk
-        HistoricoPK hpk=new HistoricoPK(idAviso,date,1); //este 1 es el supervisor asignado a este aviso
+        //creo que no hace falta controlar los null
         
-        historico.setHistoricoPK(hpk);
+        //persistir Historico
+        //crear historico
+        Historico newHistorico=new Historico();
         
-        historico.setRedAgua(redAgua);
-        historico.setTipoAviso(tipoAviso);
-        historico.setUbicacionGps("no hay ubicacion");
-        historico.setUrgencia(urgencia);
+        newHistorico.setAviso(newAviso);
+        newHistorico.setCausa(causa);
+        newHistorico.setDescripcion(descripcion);
+        newHistorico.setDireccion(direccion);
+        newHistorico.setDocAdjunto(adjunto);
+        newHistorico.setUrgencia(urgencia);
+        newHistorico.setRedAgua(redAgua);
+        newHistorico.setTipoAviso(tipoAviso);
+        newHistorico.setDuplicado(Boolean.FALSE);
+        newHistorico.setEstado("Abierto");
+                 
+        //crear historicoPK
+        HistoricoPK historicoPK =new HistoricoPK();
+        historicoPK.setFechaActualizacion(new Date());
+        historicoPK.setIdAviso(newAviso.getIdAviso());
         
-        List h = new ArrayList();
-        h.add(historico);
+        int tam = empleadoEJB.listaSupervisores().size();
+        int rnd =(int) Math.floor(Math.random()*tam);
+        Empleado sup = empleadoEJB.listaSupervisores().get(rnd); //elegimos el supervisor de forma aleatoria
         
-        nuevoAviso.setHistoricoCollection(h);
+        historicoPK.setSupervisor(sup.getIdEmpleado());
+     
+        newHistorico.setHistoricoPK(historicoPK);
         
-       // nuevoAviso.setFechaEntrada(fechaEntrada);
-       // nuevoAviso.set...  aasi meto todos los datos
-       avisos.add(nuevoAviso);
-        
-        idAviso++;
-        
+        historicoEJB.persist(newHistorico); //persistir el historico          
         
         //reinicio valores
         nombre ="";
@@ -334,6 +352,8 @@ public class CrearAvisos implements Serializable {
         redAgua="";
         adjunto="";
         
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso creado correctamente", null);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         
         return "crearAvisosClient.xhtml";
     }

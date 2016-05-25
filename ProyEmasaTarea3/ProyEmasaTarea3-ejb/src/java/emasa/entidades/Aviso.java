@@ -137,7 +137,7 @@ public class Aviso implements Serializable {
     public void setIdEmpleado(Empleado idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
-
+/*
     @Override
     public int hashCode() {
         int hash = 0;
@@ -157,7 +157,7 @@ public class Aviso implements Serializable {
         }
         return true;
     }
-
+*/
     @Override
     public String toString() {
         return "Aviso{" + "idAviso=" + idAviso + ", fechaEntrada=" + fechaEntrada + ", origen=" + origen + '}';

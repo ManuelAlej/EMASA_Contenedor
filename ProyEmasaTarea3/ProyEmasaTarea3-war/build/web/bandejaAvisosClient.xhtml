@@ -8,10 +8,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="empleado">
-        <h:form>
-           
         
-        </h:form>
     </ui:define>
 
     <ui:define name="aviso">
@@ -33,9 +30,8 @@
                                         <f:param name="idAv" value="#{avisos.idAviso}"/> 
                                         
                                     </h:link> -->
-                                   <p:column headerText="Modificar">
-    <h:commandButton value="Entrar" action="#{controlAvisos.cambiar(avisos)}"/>
-    </p:column>
+                                   
+                                  
                                     <h:outputText value="#{controlAvisos.getFechaReciente(avisos.fechaEntrada)}" />
                                 </p:column>
 
@@ -58,6 +54,10 @@
                                 <p:column headerText="urgencia" sortBy="#{controlAvisos.getHistorico(avisos).urgencia}">
                                     <h:outputText value="#{controlAvisos.getHistorico(avisos).urgencia}" />
                                 </p:column>
+                                
+                                 <p:column headerText="Modificar">
+    <h:commandButton value="Entrar" action="#{controlAvisos.cambiar(avisos)}"/>
+    </p:column>
                                 
                             </p:dataTable>
                             

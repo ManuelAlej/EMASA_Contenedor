@@ -105,7 +105,7 @@ public class LoginBean implements Serializable {
             QuienEntra.sat();
             context.addCallbackParam("view", "crearAvisosClient.xhtml");
         }
-        else if (usr.getCargo().equals("OPmov")){
+        else if (usr.getCargo().equals("Opmov")){
            
             context.addCallbackParam("view", "bandejaVisitasClient.xhtml");
         }

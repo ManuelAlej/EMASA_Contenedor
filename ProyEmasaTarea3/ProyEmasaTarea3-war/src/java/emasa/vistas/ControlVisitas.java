@@ -5,32 +5,36 @@
  */
 package emasa.vistas;
 
+import emasa.entidades.Aviso;
 import emasa.entidades.Empleado;
 import emasa.entidades.Visitas;
+import emasa.negocio.VisitasNegocio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-/**
- *
- * @author Rocco
- */
+
 @Named(value = "controlVisitas")
-@SessionScoped
+@ViewScoped
 public class ControlVisitas implements Serializable {
 
     private Empleado empleado;
     private Visitas VisitaSelected;
     @Inject
     private LoginBean login;
+    @EJB
+    private VisitasNegocio visitaEJB;
     
     /**
      * Creates a new instance of ControlVisitas
@@ -43,24 +47,24 @@ public class ControlVisitas implements Serializable {
     public boolean isEmpleado(){
         empleado=login.getUsr();
         boolean res=false;
-        if(empleado.getCargo().equals("OPmov")){
+        if(empleado.getCargo().equals("Opmov")){
             res=true;
         }
         return res;
     }
-    public List<Visitas> getVisitas(){
+   public List<Visitas> getVisitas(){
         empleado=login.getUsr();
-        return (List<Visitas>) empleado.getVisitasCollection();
+        
+        
+        List<Visitas> help = new ArrayList<Visitas>();
+        help=visitaEJB.buscarVisitas(empleado);
+        
+        System.out.println("JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJjjj    "+empleado+help);
+        
+        
+        return help;
     }
-    public void onRowSelect(SelectEvent event) {
-        FacesMessage msg = new FacesMessage("Aviso Seleccionado", String.valueOf(((Visitas) event.getObject()).getFechaVisita()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
- 
-    public void onRowUnselect(UnselectEvent event) {
-        FacesMessage msg = new FacesMessage("Aviso Deseleccionado", String.valueOf(((Visitas) event.getObject()).getFechaVisita()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
+   
     
     public Visitas getVisitaSelected() {
         return VisitaSelected;
@@ -78,6 +82,12 @@ public class ControlVisitas implements Serializable {
        }       
        return res;
     }
+    public String verVisita(Visitas visita){
+        Aviso av =visita.getHistorico().getAviso();
+        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL     "+av);
+        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("avisoSelected",av);
         
+        return "avisoClient.xhtml";
+    }
 }
     

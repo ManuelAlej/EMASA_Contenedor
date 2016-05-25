@@ -62,7 +62,7 @@ public class Historico implements Serializable {
     @Column(name = "DOC_ADJUNTO")
     private String docAdjunto;
     
-    @JoinColumn(name = "ID_AVISO", referencedColumnName = "ID_AVISO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_AVISO", referencedColumnName = "ID_AVISO", insertable = false , updatable = false)
     @ManyToOne(optional = false)
     private Aviso aviso;
     
@@ -241,7 +241,7 @@ public class Historico implements Serializable {
     public void setOrdTrabajoCollection(Collection<OrdTrabajo> ordTrabajoCollection) {
         this.ordenesTrabajo = ordTrabajoCollection;
     }
-
+/*
     @Override
     public int hashCode() {
         int hash = 0;
@@ -261,9 +261,9 @@ public class Historico implements Serializable {
         }
         return true;
     }
-
+*/
     @Override
     public String toString() {
-        return "Historico{" + "fechaActualizacion=" + historicoPK.getFechaActualizacion() + "aviso=" + historicoPK.getIdAviso()+ "supervisor=" + historicoPK.getSupervisor() + ", descripcion=" + descripcion + ", direccion=" + direccion + ", estado=" + estado + ", duplicado=" + duplicado + ", fechaCierre=" + fechaCierre + ", tipoAviso=" + tipoAviso + ", causa=" + causa + ", urgencia=" + urgencia + ", ubicacionGps=" + ubicacionGps + ", redAgua=" + redAgua + ", docAdjunto=" + docAdjunto + ", aviso=" + aviso + ", idEmpleado=" + idEmpleado + ", visitas=" + visitas + '}';
+        return "Historico{" + "fechaActualizacion=" + historicoPK.getFechaActualizacion() + "aviso=" + historicoPK.getIdAviso()+ "supervisor=" + historicoPK.getSupervisor() + ", descripcion=" + descripcion + ", direccion=" + direccion + ", estado=" + estado + ", duplicado=" + duplicado + ", fechaCierre=" + fechaCierre + ", tipoAviso=" + tipoAviso + ", causa=" + causa + ", urgencia=" + urgencia + ", ubicacionGps=" + ubicacionGps + ", redAgua=" + redAgua + ", docAdjunto=" + docAdjunto +  ", idEmpleado=" + idEmpleado +  '}';
     }    
 }

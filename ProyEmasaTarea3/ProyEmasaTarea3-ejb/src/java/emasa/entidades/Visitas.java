@@ -18,7 +18,7 @@ import javax.persistence.Column;
 @NamedQueries({
     
     @NamedQuery(name="visitas.buscartodas",
-                query="SELECT c FROM Visitas c"),
+                query="SELECT c FROM Visitas c where c.idEmpleado.idEmpleado = :idEmpleado"),
 }) 
 @Entity
 @Table(name = "VISITAS")
@@ -37,7 +37,7 @@ public class Visitas implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaVisita;
     
-    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADO", insertable = false, updatable = false)
+    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADO")
     @ManyToOne(optional = false)
     private Empleado idEmpleado;
     
@@ -92,7 +92,7 @@ public class Visitas implements Serializable {
     public void setEmpleado(Empleado empleado) {
         this.idEmpleado = empleado;
     }
-
+/*
     @Override
     public int hashCode() {
         int hash = 7;
@@ -129,9 +129,9 @@ public class Visitas implements Serializable {
         }
         return true;
     }
-
+*/
     @Override
     public String toString() {
-        return "Visitas{" + "idVisita=" + idVisita + ", fechaVisita=" + fechaVisita + ", empleado=" + idEmpleado + ", historico=" + historico + '}';
+        return "Visitas{" + "idVisita=" + idVisita + ", fechaVisita=" + fechaVisita + ", empleado=" + idEmpleado  + '}';
     }
 }

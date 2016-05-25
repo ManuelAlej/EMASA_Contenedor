@@ -13,13 +13,18 @@
     <ui:define name="aviso">
         <h:form id="form">
                <p:growl id="msgs" showDetail="true" />
-               <p:dataTable id="eventsDT" var="asignacion" value="#{controlAsignacion.supervisores}" resizableColumns="true"  selectionMode="single" selection="#{controlAsignacion.supervisorSelected}" rowKey="#{asignacion.idEmpleado}" >
+               
+               
+               <p:outputLabel for="button" value="Fecha de la visita :" />
+               <p:calendar id="button" value="#{calendarioVista.fechaAsignacion}" showOn="button" />
+               
+               
+               <p:dataTable id="eventsDT" var="asignacion" value="#{controlAsignacion.opmov}" resizableColumns="true"  >
                 <f:facet name="header" >
                    Asignar Visitas
                 </f:facet> 
-                   <p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml';" listener="#{controlAsignacion.onRowSelect}" update=":form:msgs" />
-                <p:ajax event="rowUnselect" listener="#{controlAsignacion.onRowUnselect}" update=":form:msgs" />
-
+                  
+                    
                 <p:column headerText="Nombre">
                    <h:outputText value="#{asignacion.nombre}" />
                 </p:column>
@@ -32,6 +37,10 @@
                 <p:column headerText="Especialidad" >
                     <h:outputText value="#{asignacion.especialidad}" />
                 </p:column>  
+                   <p:column headerText="Asignaciones" >
+                       <p:commandButton value="Asignar" action="#{controlAsignacion.AsignarOpmov(asignacion)}"></p:commandButton>
+                </p:column>  
+                   
             </p:dataTable>
         </h:form>              
     </ui:define>

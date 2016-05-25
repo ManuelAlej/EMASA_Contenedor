@@ -4,10 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/web/avisoClient.xhtml</file>
-            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/ControlHistoricos.java</file>
-            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/ControlAvisos.java</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/web/index.xhtml</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/QuienEntra.java</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/CrearAvisos.java</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/web/bandejaAvisosClient.xhtml</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/web/bandejaVisitasClient.xhtml</file>
+            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/web/crearAvisosClient.xhtml</file>
             <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/OpcionesAviso.java</file>
-            <file>file:/C:/Users/malex/Documents/EMASA_contenedor/EMASA_Contenedor/ProyEmasaTarea3/ProyEmasaTarea3-war/src/java/emasa/vistas/SeleccionarSupervisor.java</file>
         </group>
     </open-files>
 </project-private>

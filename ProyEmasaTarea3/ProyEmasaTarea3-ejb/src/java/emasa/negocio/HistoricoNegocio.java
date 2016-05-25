@@ -49,10 +49,10 @@ public class HistoricoNegocio {
   {      
     //  System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz"+idaviso+" : "+supervisor);
       TypedQuery<Historico> query;
-    query = em.createQuery("SELECT l from Historico l where l.aviso.idAviso = :daviso AND l.historicoPK.supervisor= :supervisor", Historico.class);
+    query = em.createQuery("SELECT l from Historico l where l.aviso.idAviso = :daviso AND l.idEmpleado.idEmpleado = :supervisor", Historico.class);
      query.setParameter("supervisor", supervisor );
      query.setParameter("daviso", idaviso );
-     System.out.println("#########################################"+query.getResultList());
+     System.out.println("#########################################"+supervisor+" MMMMMMMMMMMM "+idaviso+" MMMMMMMMMMMMMM "+query.getResultList());
       return query.getResultList();
   }
     // Add business logic below. (Right-click in editor and choose

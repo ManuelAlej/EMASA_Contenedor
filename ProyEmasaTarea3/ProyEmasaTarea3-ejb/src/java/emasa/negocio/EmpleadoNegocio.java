@@ -41,8 +41,16 @@ public class EmpleadoNegocio {
         query.setParameter("password", password);
         return query.getSingleResult();
         
-        
+       
     }
+    
+     public List<Empleado> listaOpmov()
+    {
+        TypedQuery<Empleado> query=em.createNamedQuery("lista.Opmov",Empleado.class);
+        return query.getResultList();
+    }
+    
+    
     public void crearSupervisor(Empleado e) {
         em.persist(e);
     }

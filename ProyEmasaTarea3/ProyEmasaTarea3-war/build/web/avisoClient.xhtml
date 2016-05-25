@@ -4,27 +4,34 @@
                 template="./WEB-INF/templates/Template.xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
       
     <ui:define name="empleado">
-        
-        <h:form>
-            
-            <p:commandLink value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    
-        <!--     <h:link value="Modificar Aviso" outcome="avisoClient">
-                 <f:param name="idAv" value="#{opcionesAviso.aviso.idAviso}"/>
-                 </h:link>
-            -->
-            
-            <p:commandLink value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
-            <p:commandLink value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
-            <p:commandLink value="Reasignar aviso" id="reasignar_aviso"  action="#{boton.reasignarAviso()}"  />
-            <p:commandLink value="Relacionar con otro aviso" id="aviso_relacionado"  action="#{boton.avisosRelacionados()}" />      
-            <p:commandLink value="Bandeja de entrada" id="bandejaEntrada"  action="#{boton.volverBandeja()}"  />
-            <p:commandLink value="Ver historico"  onclick="PF('dlg3').show();"  />  
-        </h:form>
-            
+         <c:choose>
+             <c:when test="#{controlAvisos.supervisor}">
+                <h:form>
 
+                    <p:commandLink value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    
+                <!--     <h:link value="Modificar Aviso" outcome="avisoClient">
+                         <f:param name="idAv" value="#{opcionesAviso.aviso.idAviso}"/>
+                         </h:link>
+                    -->
+
+                    <p:commandLink value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
+                    <p:commandLink value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
+                    <p:commandLink value="Reasignar aviso" id="reasignar_aviso"  action="#{boton.reasignarAviso()}"  />
+                    <p:commandLink value="Relacionar con otro aviso" id="aviso_relacionado"  action="#{boton.avisosRelacionados()}" />      
+                    <p:commandLink value="Bandeja de entrada" id="bandejaEntrada"  action="#{boton.volverBandeja()}"  />
+                    <p:commandLink value="Ver historico"  onclick="PF('dlg3').show();"  />  
+                </h:form>
+            </c:when> 
+             <c:otherwise>
+                 <h:form>
+                 <p:commandButton value="Volver" action="bandejaVisitasClient.xhtml"/>
+                 </h:form>
+            </c:otherwise>
+         </c:choose>
     </ui:define>
 
     <ui:define name="aviso">

@@ -152,7 +152,7 @@ public class OpcionesAviso implements Serializable {
      
        // Integer a= Integer.parseInt(ultimoHist)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idAv");
 
-       // System.out.println("//////////**************"+a);
+       System.out.println("//////////**************"+aviso);
         
         supervisor = datos.getHistorico(aviso).getHistoricoPK().getSupervisor();
              
