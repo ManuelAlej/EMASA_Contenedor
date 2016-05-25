@@ -13,9 +13,8 @@
     <ui:define name="aviso">
         <c:set var="who" value="${QuienEntra.entraComoCliente}"/>
         <c:set var="bot" value="${QuienEntra.opmov}"/>
-        <h:form enctype="multipart/form-data">
-        
-        
+        <p:growl id="correcto" showDetail="true" life="4000" />
+        <h:form>       
             <p:panelGrid id="aviso" columns="2">   
                 <p:outputLabel value="Nombre: " />
                 <p:inputText value="#{crearAvisos.nombre}"/>
@@ -39,9 +38,11 @@
                 <p:inputText value="#{crearAvisos.tipoAviso}" rendered="${!who}"/>
                 <p:outputLabel value="Red de agua: " rendered="${!who}"/>
                 <p:inputText value="#{crearAvisos.redAgua}" rendered="${!who}"/> 
-                <h:inputFile value="Elegir ..." rendered="${!who}"/>  
+                <p:fileUpload value="#{crearAvisos.file}" mode="simple" rendered="${!who}"/>  
+                <p:commandButton value="Subir" ajax="false" actionListener="#{crearAvisos.upload}"/>
+                  
             </p:panelGrid>
-            <p:commandButton value="Crear" action="#{crearAvisos.crearAvisoNuevo()}" />
+            <p:commandButton value="Crear" action="#{crearAvisos.crearAvisoNuevo()}" update=":correcto" />
             <p:commandButton value="Reset" update="aviso" process="@this" style="margin-right:20px;"  >
                 <p:resetInput target="aviso" />
             </p:commandButton>
