@@ -10,10 +10,11 @@
         
         <h:form>
             
-            <!--<p:commandLink value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    -->
-             <h:link value="Modificar Aviso" outcome="avisoClient">
+            <p:commandLink value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    
+        <!--     <h:link value="Modificar Aviso" outcome="avisoClient">
                  <f:param name="idAv" value="#{opcionesAviso.aviso.idAviso}"/>
                  </h:link>
+            -->
             
             <p:commandLink value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
             <p:commandLink value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
@@ -39,7 +40,7 @@
                     <p:calendar id="button3" value="#{calendarioVista.date3}" showOn="button" />
                     
                     <p:outputLabel id="comentarioFechas" value="Puedes dejar las fechas en blanco para ver todos los historicos"/>
-                    <p:commandButton value="Confirmar" onclick="irHistoricos()" />
+                    <p:commandButton value="Confirmar" onclick="#{opcionesAviso.guardarId(opcionesAviso.aviso.idAviso)}" oncomplete="irHistoricos(#{opcionesAviso.aviso.idAviso})" />
             </p:dialog>
             
        
@@ -61,46 +62,46 @@
                     </p:inplace>     
                     <p:outputLabel  value="Descripción " />
                     <p:inplace editor="true"> 
-                        <h:inputTextarea value="#{opcionesAviso.his.descripcion}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.descripcion}"  /> 
                     </p:inplace>                     
                     <p:outputLabel  value="Direccion " />
                     <p:inplace editor="true">
-                        <p:inputText value="#{opcionesAviso.his.direccion}"  /> 
+                        <p:inputText value="#{opcionesAviso.his_nuevo.direccion}"  /> 
                     </p:inplace> 
                     <p:outputLabel  value="Estado " />
                     <p:inplace editor="true">
-                        <p:inputText  value="#{opcionesAviso.his.estado}"  /> 
+                        <p:inputText  value="#{opcionesAviso.his_nuevo.estado}"  /> 
                     </p:inplace> 
                     <p:outputLabel  value="Duplicado " />
                     <p:inplace editor="true">
-                        <p:inputText  value="#{opcionesAviso.his.duplicado}"  /> 
+                        <p:inputText  value="#{opcionesAviso.his_nuevo.duplicado}"  /> 
                     </p:inplace> 
                     <p:outputLabel for="button" value="Fecha cierre:" />
                     <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
                     <p:outputLabel  value="Tipo de aviso" />
                     <p:inplace editor="true">
-                        <p:inputText value="#{opcionesAviso.his.tipoAviso}"  /> 
+                        <p:inputText value="#{opcionesAviso.his_nuevo.tipoAviso}"  /> 
                     </p:inplace>     
                     <p:outputLabel  value="Causa" />
                     <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his.causa}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.causa}"  /> 
                     </p:inplace>    
                     <p:outputLabel  value="Urgencia" />
                     <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his.urgencia}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.urgencia}"  /> 
                     </p:inplace>    
                     <p:outputLabel  value="Ubicacion_gps" />
                     <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his.ubicacionGps}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.ubicacionGps}"  /> 
                     </p:inplace>   
                     <p:outputLabel  value="Red de agua" />
                     <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his.redAgua}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.redAgua}"  /> 
                     </p:inplace> 
                     
                     <p:outputLabel  value="Documentación adjunta" />
                     <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his.docAdjunto}"  /> 
+                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.docAdjunto}"  /> 
                     </p:inplace>       
                 </p:panelGrid>   
         </h:form>

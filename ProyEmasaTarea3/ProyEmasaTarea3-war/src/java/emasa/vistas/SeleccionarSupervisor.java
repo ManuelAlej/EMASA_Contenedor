@@ -19,6 +19,8 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 
@@ -27,7 +29,7 @@ import javax.inject.Inject;
  * @author malex
  */
 @Named(value = "seleccionarSupervisor")
-@SessionScoped
+@ViewScoped
 public class SeleccionarSupervisor implements Serializable {
     private Empleado e = new Empleado();
     private List<Empleado> supervisoresList;
@@ -39,6 +41,9 @@ public class SeleccionarSupervisor implements Serializable {
     private AvisoNegocio avisoEJB;
       @EJB
     private HistoricoNegocio historicoEJB;
+      @Inject
+    private LoginBean sesion;
+    private List<Historico> historicos;
     
  //----Adri desde aqui---
     public Integer getIdAviso() {
@@ -95,24 +100,7 @@ public class SeleccionarSupervisor implements Serializable {
               
     }
     
-   
     
-    
-    
-    
-    
-    //<----Hasta---
-
-    
-    
-    
-    
-    
-    
-    public void setSupervisores(List<Empleado> supervisores) {
-        this.supervisores = supervisores;
-    }
-
     public Aviso getAviso() {
         return aviso;
     }
@@ -121,13 +109,7 @@ public class SeleccionarSupervisor implements Serializable {
         this.aviso = aviso;
     }
 
-    public OpcionesAviso getOpciones_aviso() {
-        return opciones_aviso;
-    }
-
-    public void setOpciones_aviso(OpcionesAviso opciones_aviso) {
-        this.opciones_aviso = opciones_aviso;
-    }
+   
 
     public Integer getIdSupervisor() {
         return idSupervisor;
@@ -139,21 +121,12 @@ public class SeleccionarSupervisor implements Serializable {
 
     private Integer idSupervisor;
 
-    public InicializarSupervisores getService() {
-        return service;
-    }
-    private List<Empleado> supervisores;
+  
 
-    public void setService(InicializarSupervisores service) {
-        this.service = service;
-    }
-
-    @Inject
-    private InicializarSupervisores service;
+   
 
     private Aviso aviso;
-    @Inject
-    private OpcionesAviso opciones_aviso;
+    
 
     public SeleccionarSupervisor() {
 
@@ -166,25 +139,56 @@ public class SeleccionarSupervisor implements Serializable {
             return "reasignarAvisoClient.xhtml";
         }
        
-        aviso = opciones_aviso.getAviso(); //cojo el aviso
+       aviso=(Aviso) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("avisoSelected");
+       
+         //cojo el aviso
         
+         Historico anterior= (Historico)FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("Historico");
+         System.out.println("fdxwscgscchjkrlbjlrgmvnfvbdchbhdvgchd          "+anterior);
+         
+         
+         anterior.setFechaCierre(new Date());
+         historicoEJB.actualizarHistorico(anterior);
+         
+         
         //actualizo el supervisor del aviso
         Historico hist = new Historico();
         hist.setHistoricoPK(new HistoricoPK(aviso.getIdAviso(), new Date(),idSup));
         
-        hist.copiarHist(opciones_aviso.getHistoricoReciente());
+        hist.copiarHist(anterior);
+        hist.setFechaCierre(null);
       /*          opciones_aviso.getHistoricoReciente();
         hist.getHistoricoPK().setSupervisor(Integer.parseInt(idSup));
         hist.getHistoricoPK().setFechaActualizacion(new Date());
-     */  historicoEJB.persist(hist);    // persist al historico
+        
+     */ 
+      
+      
+      historicoEJB.persist(hist);    // persist al historico
+      
+      
+       
        // aviso.getHistoricoCollection().add(hist);
       // avisoEJB.actualizarAviso(aviso);
         return "bandejaAvisosClient.xhtml"; 
 
     }
 
-    public List<Empleado> getSupervisores() {
-        return supervisores;
+  public Historico getHistoricoReciente() {
+        historicos =historicoEJB.buscarHistoricos(aviso.getIdAviso(),sesion.getUsr().getIdEmpleado());
+        Historico reciente = historicos.get(0);
+
+        Date fecha = reciente.getHistoricoPK().getFechaActualizacion();
+
+        for (Historico h : historicos) {
+
+            if (h.getHistoricoPK().getFechaActualizacion().after(fecha)) {
+                reciente = h;
+                fecha = h.getHistoricoPK().getFechaActualizacion();
+            }
+        }
+
+        return reciente;
     }
 
     public String b_cancelar() {

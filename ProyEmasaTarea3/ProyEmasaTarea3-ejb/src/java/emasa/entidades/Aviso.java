@@ -19,7 +19,7 @@ import javax.persistence.*;
 @NamedQueries({
     
     @NamedQuery(name="lista.avisos",
-                query="SELECT l FROM Aviso l WHERE l.idEmpleado.idEmpleado = :idEmpleado "),
+                query="SELECT l FROM Aviso l, Historico h WHERE l.idAviso = h.historicoPK.idAviso AND h.historicoPK.supervisor=:idEmpleado AND h.fechaCierre IS NULL AND h.duplicado = FALSE"),
     
         
 })

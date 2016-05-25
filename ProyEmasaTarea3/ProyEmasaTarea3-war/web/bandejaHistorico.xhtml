@@ -8,17 +8,14 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="empleado">
-        
+        <p:commandButton value="Volver" action="avisoClient.xhtml" />
     </ui:define>
 
     <ui:define name="aviso">
         
                 <h:form id="form">
-                    <p:growl id="msgs" showDetail="true" />
-                    <p:dataTable id="eventsDT" var="Historico" value="#{controlHistoricos.historicos}" resizableColumns="true" selectionMode="single" selection="#{controlHistoricos.historicoSelected}" rowKey="#{Historico}">
-                        
-                        <p:ajax event="rowSelect" oncomplete="location.href='HistDetalles.xhtml';" listener="#{controlHistoricos.onRowSelect}" update=":form:msgs" />
-                        <p:ajax event="rowUnselect" listener="#{controlHistoricos.onRowUnselect}" update=":form:msgs" />
+                    
+                    <p:dataTable id="eventsDT" var="Historico" value="#{controlHistoricos.historicos}" resizableColumns="true" >
                         
                         <p:column headerText="Fechar Inicio" >
                             <h:outputText value="#{Historico.historicoPK.fechaActualizacion}" />
@@ -32,7 +29,9 @@
                         <p:column headerText="Descripcion" >
                             <h:outputText value="#{Historico.descripcion}" />
                         </p:column>
-                        
+                        <p:column headerText="Detalles" >
+                            <p:commandButton value="Ver" action="#{controlHistoricos.irDetalles(Historico)}"  />
+                        </p:column>
                         
                     </p:dataTable>
                 </h:form>

@@ -16,10 +16,7 @@ import javax.inject.Inject;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
-/**
- *
- * @author Rocco
- */
+
 @Named(value = "controlRelacion")
 @Dependent
 public class ControlRelacion {

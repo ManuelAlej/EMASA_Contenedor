@@ -7,7 +7,9 @@ package emasa.negocio;
 
 
 import emasa.entidades.Aviso;
+import emasa.entidades.Brigada;
 import emasa.entidades.Empleado;
+import emasa.entidades.Historico;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
@@ -44,4 +46,5 @@ public void actualizarAviso(Aviso a) {
         Aviso aviso=em.find(Aviso.class, idAviso);
         return aviso;
     }
+ 
 }

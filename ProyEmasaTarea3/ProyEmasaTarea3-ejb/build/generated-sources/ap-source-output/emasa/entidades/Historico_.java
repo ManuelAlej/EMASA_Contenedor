@@ -11,7 +11,7 @@ import javax.persistence.metamodel.CollectionAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-05-25T01:20:52")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2016-05-25T16:08:59")
 @StaticMetamodel(Historico.class)
 public class Historico_ { 
 

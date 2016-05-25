@@ -144,7 +144,7 @@ public class OpcionesAviso implements Serializable {
 
     @PostConstruct
     public void init() {
-       aviso =(Aviso)FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("avisoSelected");
+       aviso =(Aviso)FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("avisoSelected");
         /**************************************************************
          * ***************************************************
          * ************
@@ -153,13 +153,16 @@ public class OpcionesAviso implements Serializable {
        // Integer a= Integer.parseInt(ultimoHist)FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idAv");
 
        // System.out.println("//////////**************"+a);
-        ControlAvisos s=new ControlAvisos();
-        supervisor = s.getHistorico(aviso).getHistoricoPK().getSupervisor();
+        
+        supervisor = datos.getHistorico(aviso).getHistoricoPK().getSupervisor();
              
         cliente = aviso.getDni();
         historicos=(List<Historico>) aviso.getHistoricoCollection();
-        his =s.getHistorico(aviso);
-
+        his =datos.getHistorico(aviso);
+        
+           FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("Historico", his); 
+        System.out.println("*****************"+his);
+           
         if (his.getDescripcion() == null) {
             his.setDescripcion("Vacio");
         }
@@ -199,6 +202,27 @@ public class OpcionesAviso implements Serializable {
         if (his.getUrgencia() == null) {
             his.setUrgencia("vacio");
         }
+        
+        if (his.getDuplicado() == null) {
+            his.setDuplicado(false);
+        }
+
+        his_nuevo = new Historico(new HistoricoPK(aviso.getIdAviso(), new Date(), supervisor), his.getDescripcion(), his.getDireccion(), his.getEstado(), his.getDuplicado());
+        his_nuevo.setCausa(his.getCausa());
+
+        his_nuevo.setFechaCierre(null);
+
+        his_nuevo.setTipoAviso(his.getTipoAviso());
+
+        his_nuevo.setUrgencia(his.getUrgencia());
+
+        his_nuevo.setUbicacionGps(his.getUbicacionGps());
+
+        his_nuevo.setRedAgua(his.getRedAgua());
+
+        his_nuevo.setDocAdjunto(his.getDocAdjunto());
+
+      
 
     }
 
@@ -237,38 +261,18 @@ public class OpcionesAviso implements Serializable {
     public String modificarAviso() {
         //id_aviso,fecha_entrada,supervisor_asignado,descripcion,direccion,estado,duplicado,fechacierre,tipodeaviso,urgencia,ubicacion_gps,red_agua
 
-        his_nuevo = new Historico(new HistoricoPK(aviso.getIdAviso(), new Date(), supervisor), his.getDescripcion(), his.getDireccion(), his.getEstado(), his.getDuplicado());
-        his_nuevo.setCausa(his.getCausa());
-
-        his_nuevo.setFechaCierre(calendario.getDate1());
-
-        his_nuevo.setTipoAviso(his.getTipoAviso());
-
-        his_nuevo.setUrgencia(his.getUrgencia());
-
-        his_nuevo.setUbicacionGps(his.getUbicacionGps());
-
-        his_nuevo.setRedAgua(his.getRedAgua());
-
-        his_nuevo.setDocAdjunto(his.getDocAdjunto());
-
-        historicos.add(his_nuevo);
-
-        if (calendario.getDate1() == null) {
-            his_nuevo.setFechaCierre(his.getFechaCierre());
-        }
-
+        his.setFechaCierre(new Date());
+        historicoNegocio.actualizarHistorico(his);
         his = getHistoricoReciente();
         
-        
-        
-        historicoNegocio.persist(his);
-        
+        aviso.getHistoricoCollection().add(his_nuevo);
        
-        
-        
+        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("avisoSelected", aviso);
+        System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"+ FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("avisoSelected"));
+       
+        historicoNegocio.persist(his_nuevo);
 
-        return "avisoClient.xhtml";
+        return "bandejaAvisosClient.xhtml";
 
     }
 
@@ -287,6 +291,8 @@ public class OpcionesAviso implements Serializable {
     public void setRelacionado(String relacionado) {
         this.relacionado = relacionado;
     }
-
+    public void guardarId(Integer ida){
+        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("id", ida);
+    }
 
 }

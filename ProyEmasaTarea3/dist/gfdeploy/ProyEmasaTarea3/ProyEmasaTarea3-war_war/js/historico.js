@@ -4,6 +4,6 @@
  * and open the template in the editor.
  */
 
-function irHistoricos(){
+function irHistoricos(aviso){
     location.href="bandejaHistorico.xhtml";
 }
