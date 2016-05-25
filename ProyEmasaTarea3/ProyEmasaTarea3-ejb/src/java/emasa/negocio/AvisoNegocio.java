@@ -39,9 +39,20 @@ public void actualizarAviso(Aviso a) {
         
         
     }
+	
+	public List<Aviso> buscarAvisos() {
+        TypedQuery<Aviso> query = em.createNamedQuery("aviso.buscartodos", Aviso.class);
+        return query.getResultList();
+
+    }
+	
   public Aviso buscarAviso(Integer idAviso) {
        
         Aviso aviso=em.find(Aviso.class, idAviso);
         return aviso;
+    }
+	
+	 public void crearAviso(Aviso a) {
+        em.persist(a);
     }
 }
