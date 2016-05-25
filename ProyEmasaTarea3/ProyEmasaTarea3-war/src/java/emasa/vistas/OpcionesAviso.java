@@ -275,7 +275,23 @@ public class OpcionesAviso implements Serializable {
         return "bandejaAvisosClient.xhtml";
 
     }
+public String modificarAvisoOp() {
+        //id_aviso,fecha_entrada,supervisor_asignado,descripcion,direccion,estado,duplicado,fechacierre,tipodeaviso,urgencia,ubicacion_gps,red_agua
 
+        his.setFechaCierre(new Date());
+        historicoNegocio.actualizarHistorico(his);
+        his = getHistoricoReciente();
+        
+        aviso.getHistoricoCollection().add(his_nuevo);
+       
+        FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().put("avisoSelected", aviso);
+        System.out.println("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"+ FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("avisoSelected"));
+       
+        historicoNegocio.persist(his_nuevo);
+
+        return "bandejaVisitasClient.xhtml";
+
+    }
     public String getRelacionado() {
 
         if (aviso.getRelacionado() == null) {

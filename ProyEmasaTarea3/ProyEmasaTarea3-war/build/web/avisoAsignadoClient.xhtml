@@ -11,64 +11,64 @@
     </ui:define>
 
     <ui:define name="aviso">
-        <h:form>
-            <p:panelGrid columns="4" columnClasses="column" >
-                <p:outputLabel value="ID aviso: " /> 
-                <p:outputLabel value="#{avisoAsignado.aviso.idAviso}" /> 
-                <p:outputLabel value="Fecha entrada " />  
-                <p:outputLabel value="#{avisoAsignado.aviso.fechaEntrada}" />
-                <p:outputLabel value="Origen:  " />
-                <p:outputLabel value="#{avisoAsignado.aviso.origen}" />   
-                <p:outputLabel value="Fecha actualización  " />
-                <p:outputLabel value="#{avisoAsignado.his.historicoPK.fechaActualizacion}" /> 
-                <p:outputLabel value="Supervisor asignado " /> 
-                <p:outputLabel value="#{avisoAsignado.his.historicoPK.supervisor}" />   
-                <p:outputLabel  value="Descripción " />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.descripcion}"  /> 
+        <h:form id="formu">
+            <p:panelGrid id="grid" columns="4" columnClasses="column" >
+                <p:outputLabel id="etiqueta1" value="ID aviso: " /> 
+                <p:outputLabel id="idc" value="#{avisoAsignado.aviso.idAviso}" /> 
+                <p:outputLabel id="etiqueta2" value="Fecha entrada " />  
+                <p:outputLabel id="fechaE" value="#{avisoAsignado.aviso.fechaEntrada}" />
+                <p:outputLabel id="etiqueta3" value="Origen:  " />
+                <p:outputLabel id="origen1" value="#{avisoAsignado.aviso.origen}" />   
+                <p:outputLabel id="etiqueta4" value="Fecha actualización  " />
+                <p:outputLabel id="fechaAc" value="#{avisoAsignado.his.historicoPK.fechaActualizacion}" /> 
+                <p:outputLabel id="etiqueta5" value="Supervisor asignado " /> 
+                <p:outputLabel id="super" value="#{avisoAsignado.his.historicoPK.supervisor}" />   
+                <p:outputLabel id="etiqueta6" value="Descripción " />
+                <p:inplace id="inplace" editor="true">
+                    <h:inputTextarea id="descrip" value="#{avisoAsignado.his.descripcion}"  /> 
                 </p:inplace>  
-                <p:outputLabel  value="Direccion " />
-                <p:inplace editor="true">
-                    <h:inputText value="#{avisoAsignado.his.direccion}"  /> 
+                <p:outputLabel id="etiqueta7" value="Direccion " />
+                <p:inplace id="inplace2" editor="true">
+                    <h:inputText id="dir" value="#{avisoAsignado.his.direccion}"  /> 
                 </p:inplace> 
-                <p:outputLabel  value="Estado " />
-                <p:inplace editor="true">
-                    <h:inputText value="#{avisoAsignado.his.estado}"  /> 
+                <p:outputLabel id="etiqueta8"  value="Estado " />
+                <p:inplace id="inplace3" editor="true">
+                    <h:inputText id="estado" value="#{avisoAsignado.his.estado}"  /> 
                 </p:inplace> 
-                <p:outputLabel  value="Duplicado " />
-                <p:inplace editor="true">
-                    <h:inputText value="#{avisoAsignado.his.duplicado}"  /> 
+                <p:outputLabel id="etique" value="Duplicado " />
+                <p:inplace id="inplace3" editor="true">
+                    <h:inputText id="dupli" value="#{avisoAsignado.his.duplicado}"  /> 
                 </p:inplace> 
-                <p:outputLabel for="button" value="Fecha cierre:" />
+                <p:outputLabel id="etiqueta9" for="button" value="Fecha cierre:" />
                 <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
-                <p:outputLabel  value="Tipo de aviso" />
-                <p:inplace editor="true">
-                    <h:inputText value="#{avisoAsignado.his.tipoAviso}"  /> 
+                <p:outputLabel id="etiqueta10" value="Tipo de aviso" />
+                <p:inplace id="inplace4" editor="true">
+                    <h:inputText id="tipoA" value="#{avisoAsignado.his.tipoAviso}"  /> 
                 </p:inplace>     
-                <p:outputLabel  value="Causa" />
+                <p:outputLabel id="etiqueta11" value="Causa" />
                 <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.causa}"  /> 
+                    <h:inputTextarea id="causa" value="#{avisoAsignado.his.causa}"  /> 
                 </p:inplace>    
-                <p:outputLabel  value="Urgencia" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.urgencia}"  /> 
+                <p:outputLabel id="etiqueta12" value="Urgencia" />
+                <p:inplace id="inplace8" editor="true">
+                    <h:inputTextarea id="urgencia" value="#{avisoAsignado.his.urgencia}"  /> 
                 </p:inplace>    
-                <p:outputLabel  value="Ubicacion_gps" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.ubicacionGps}"  /> 
+                <p:outputLabel id="etiqueta13" value="Ubicacion_gps" />
+                <p:inplace id="inplace6" editor="true">
+                    <h:inputTextarea id="gps" value="#{avisoAsignado.his.ubicacionGps}"  /> 
                 </p:inplace>   
-                <p:outputLabel  value="Red de agua" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.redAgua}"  /> 
+                <p:outputLabel id="etiqueta14" value="Red de agua" />
+                <p:inplace id="inplace7" editor="true">
+                    <h:inputTextarea id="red" value="#{avisoAsignado.his.redAgua}"  /> 
                 </p:inplace>   
-                <p:outputLabel  value="Documentación adjunta" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{avisoAsignado.his.docAdjunto}"  /> 
+                <p:outputLabel id="etiqueta15" value="Documentación adjunta" />
+                <p:inplace id="inplace8" editor="true">
+                    <h:inputTextarea id="doc" value="#{avisoAsignado.his.docAdjunto}"  /> 
                 </p:inplace>  
             </p:panelGrid>
             <p:separator />
-            <h:commandButton value="Modificar Aviso"  action="#{avisoAsignado.modificarAviso()}" styleClass="ui-priority-primary" />
-            <h:commandButton value="Volver"  action="bandejaVisitasClient.xhtml" styleClass="ui-priority-primary" />        <!-- volver al menu de empleado de mov. -->
+            <h:commandButton id="modificar" value="Modificar Aviso"  action="#{avisoAsignado.modificarAviso()}" styleClass="ui-priority-primary" />
+            <h:commandButton id="bandejaLink" value="Volver"  action="bandejaVisitasClient.xhtml" styleClass="ui-priority-primary" />        <!-- volver al menu de empleado de mov. -->
         </h:form>
     </ui:define>
 </ui:composition>

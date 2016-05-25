@@ -19,27 +19,27 @@
                 </f:facet>                     
                 <p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml';" listener="#{controlRelacion.onRowSelect}" update=":form:msgs" />
                 <p:ajax event="rowUnselect" listener="#{controlRelacion.onRowUnselect}" update=":form:msgs" />
-                <p:column headerText="fecha" sortBy="#{avisos.fechaEntrada}">
-                    <h:outputText value="#{controlAvisos.getFechaReciente(avisos.fechaEntrada)}" />
+                <p:column headerText="fecha" id="columna1" sortBy="#{avisos.fechaEntrada}">
+                    <h:outputText id="FechaEntrada" value="#{controlAvisos.getFechaReciente(avisos.fechaEntrada)}" />
                 </p:column>
-                <p:column headerText="origen" sortBy="#{avisos.origen}">
-                    <h:outputText value="#{avisos.origen}" />
+                <p:column id="columna2" headerText="origen" sortBy="#{avisos.origen}">
+                    <h:outputText id="Origen" value="#{avisos.origen}" />
                 </p:column>
-                <p:column headerText="descripcion" >
-                    <h:outputText value="#{controlAvisos.getHistorico(avisos).descripcion}"  />
+                <p:column id="columna3" headerText="descripcion" >
+                    <h:outputText id="descripcion" value="#{controlAvisos.getHistorico(avisos).descripcion}"  />
                 </p:column>
-                <p:column headerText="direccion" >
-                    <h:outputText value="#{controlAvisos.getHistorico(avisos).direccion}"  />
+                <p:column id="columna4" headerText="direccion" >
+                    <h:outputText id="direccion" value="#{controlAvisos.getHistorico(avisos).direccion}"  />
                 </p:column>
-                <p:column headerText="estado" sortBy="#{controlAvisos.getHistorico(avisos).estado}">                                                                        
-                    <h:outputText value="#{controlAvisos.getHistorico(avisos).estado}" />
+                <p:column id="columna5" headerText="estado" sortBy="#{controlAvisos.getHistorico(avisos).estado}">                                                                        
+                    <h:outputText id="estado" value="#{controlAvisos.getHistorico(avisos).estado}" />
                 </p:column>
-                <p:column headerText="urgencia" sortBy="#{controlAvisos.getHistorico(avisos).urgencia}">
-                    <h:outputText value="#{controlAvisos.getHistorico(avisos).urgencia}" />
+                <p:column id="columna6" headerText="urgencia" sortBy="#{controlAvisos.getHistorico(avisos).urgencia}">
+                    <h:outputText id="urgencia" value="#{controlAvisos.getHistorico(avisos).urgencia}" />
                 </p:column>
             </p:dataTable>
             <p:separator />
-           <h:commandButton value="Volver al aviso" action="avisoClient.xhtml" /> 
+           <h:commandButton id="volver" value="Volver al aviso" action="avisoClient.xhtml" /> 
         </h:form>
     </ui:define>
 </ui:composition>

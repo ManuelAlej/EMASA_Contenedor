@@ -10,47 +10,47 @@
 
     </ui:define>
     <ui:define name="aviso">
-        <h:form>
-            <f:view>
+        <h:form id="formra">
+            <f:view id="viewra">
 
 
                 <h:form>
                    
-                    <h:outputText value="Lista de Supervisores"/>
-                    <p:dataTable value="#{seleccionarSupervisor.supervisoresList}" var="item" >
+                    <h:outputText id="etiqueta40"value="Lista de Supervisores"/>
+                    <p:dataTable id="tabla40" value="#{seleccionarSupervisor.supervisoresList}" var="item" >
                        <!-- <p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml';" listener="#{controlAvisos.onRowSelect}" update=":form:msgs" />
                         <p:ajax event="rowUnselect" listener="#{controlAvisos.onRowUnselect}" update=":form:msgs" /> -->
-                        <p:column headerText="Id">
+                        <p:column id="columna40" headerText="Id">
                             
-                            <h:outputText value="#{item.idEmpleado}"/>
+                            <h:outputText id="etiqueta41" value="#{item.idEmpleado}"/>
                         </p:column>
-                        <p:column headerText="Nombre">
+                        <p:column id="columna41" headerText="Nombre">
                             
-                            <h:outputText value="#{item.nombre}"/>
+                            <h:outputText id="etiqueta42" value="#{item.nombre}"/>
                         </p:column>
-                        <p:column headerText="Apellidos">
+                        <p:column id="columna42"  headerText="Apellidos">
                             
-                            <h:outputText value="#{item.apellidos}"/>
+                            <h:outputText id="etiqueta43" value="#{item.apellidos}"/>
                         </p:column>
-                        <p:column headerText="Dni">
+                        <p:column id="columna43" headerText="Dni">
                             
-                            <h:outputText value="#{item.dni}"/>
+                            <h:outputText id="etiqueta44" value="#{item.dni}"/>
                         </p:column>
-                        <p:column headerText="Turno">
+                        <p:column id="columna44" headerText="Turno">
                             
-                            <h:outputText value="#{item.turno}"/>
+                            <h:outputText id="etiqueta45" value="#{item.turno}"/>
                         </p:column>
                         
-                        <p:column headerText="Especialidad">
+                        <p:column id="columna45" headerText="Especialidad">
                             
-                            <h:outputText value="#{item.especialidad}"/>
+                            <h:outputText id="etiqueta46" value="#{item.especialidad}"/>
                         </p:column>
                     </p:dataTable>
-                    <p:outputLabel value="Id del Supervisor: " ></p:outputLabel>
-            <h:inputText value="#{seleccionarSupervisor.idSup}" ></h:inputText>        
-            <p:commandButton value="Cambiar Asignación"   id="Cambiar_asig"  action="#{seleccionarSupervisor.cambiarAsignacion()}" />
+                    <p:outputLabel id="etiqueta47" value="Id del Supervisor: " ></p:outputLabel>
+            <h:inputText id="campo40" value="#{seleccionarSupervisor.idSup}" ></h:inputText>        
+            <p:commandButton id="boton40" value="Cambiar Asignación"   id="Cambiar_asig"  action="#{seleccionarSupervisor.cambiarAsignacion()}" />
             
-            <p:commandButton value="Cancelar"  id="cancelar" action="#{seleccionarSupervisor.b_cancelar()}"  />
+            <p:commandButton id="boton41" value="Cancelar"  id="cancelar" action="#{seleccionarSupervisor.b_cancelar()}"  />
             <!-- <p:commandButton value="añadir" action="#{seleccionarSupervisor.createSupervisor()}"/> -->
            
             

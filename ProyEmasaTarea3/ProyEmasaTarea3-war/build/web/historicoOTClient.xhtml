@@ -8,9 +8,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="empleado">
-        <h:form>
+        <h:form id="form80">
             
-            <h:commandLink value="Volver" action="#{controlActuaciones.volver()}" />
+            <h:commandLink id="link80" value="Volver" action="#{controlActuaciones.volver()}" />
             
             
         </h:form>
@@ -23,17 +23,17 @@
                     
                     <p:dataTable id="eventsDT" var="Actuaciones" value="#{controlActuaciones.actuaciones}" resizableColumns="true" selectionMode="single" selection="#{controlActuaciones.actuacionSelected}" rowKey="Actuaciones">
                         
-                        <p:column headerText="ID Aviso" >
-                            <h:outputText value="#{modificarOrdTrabajo.idAviso}" />
+                        <p:column id="columna80" headerText="ID Aviso" >
+                            <h:outputText id="text80" value="#{modificarOrdTrabajo.idAviso}" />
                         </p:column>
-                        <p:column headerText="ID Orden" >
-                            <h:outputText value="#{modificarOrdTrabajo.ord.ordSelected.idOrden}" />
+                        <p:column id="columna81" headerText="ID Orden" >
+                            <h:outputText id="text81" value="#{modificarOrdTrabajo.ord.ordSelected.idOrden}" />
                         </p:column>
-                        <p:column headerText="Observaciones" >
-                            <h:outputText value="#{Actuaciones.observaciones}" />
+                        <p:column id="columna82" headerText="Observaciones" >
+                            <h:outputText id="text82" value="#{Actuaciones.observaciones}" />
                         </p:column>
-                        <p:column headerText="Actuaciones" >
-                            <h:outputText value="#{Actuaciones.operRealizadas}" />
+                        <p:column id="columna83" headerText="Actuaciones" >
+                            <h:outputText id="text83"value="#{Actuaciones.operRealizadas}" />
                         </p:column>
                         
                         

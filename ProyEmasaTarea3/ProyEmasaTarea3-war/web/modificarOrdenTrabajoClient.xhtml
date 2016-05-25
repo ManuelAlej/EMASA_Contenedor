@@ -7,11 +7,11 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="empleado">
-        <h:form>
-            <h:commandLink value="Cancelar" action="#{ordenTrabajo.volver}"/> 
-            <h:commandLink value="Modificar orden de trabajo" action="#{modificarOrdTrabajo.modificarActuacion()}"/>
-            <h:commandLink value="Historial de actuaciones" action="#{modificarOrdTrabajo.listaActuaciones()}"/>  
-            <h:commandLink value="Cerrar orden de trabajo" action="#{modificarOrdTrabajo.cerrarOT()}"/>  
+        <h:form id="form50">
+            <h:commandLink id="link50" value="Cancelar" action="#{ordenTrabajo.volver}"/> 
+            <h:commandLink id="link51" value="Modificar orden de trabajo" action="#{modificarOrdTrabajo.modificarActuacion()}"/>
+            <h:commandLink id="link52" value="Historial de actuaciones" action="#{modificarOrdTrabajo.listaActuaciones()}"/>  
+            <h:commandLink id="link53" value="Cerrar orden de trabajo" action="#{modificarOrdTrabajo.cerrarOT()}"/>  
             
             
             
@@ -19,38 +19,38 @@
     </ui:define>
 
     <ui:define name="aviso">
-        <h:form id="form">
+        <h:form id="form51">
                          
            
            
                 
             <p:growl id="msgs" showDetail="true" />
             <p:panelGrid id="ot" columns="4">
-                <p:outputLabel value="Id_Orden: " />
-                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.idOrden}" />
-                <p:outputLabel value="Id Aviso: " />  
-                <p:outputLabel value="#{modificarOrdTrabajo.idAviso}" />
-                <p:outputLabel value="Supervisor: " />  
-                <p:outputLabel value="#{modificarOrdTrabajo.supervisor}" />
-                <p:outputLabel value="fecha_creacion" />
-                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.fechaCreacion}"/> 
-                <p:outputLabel value="Trabajo a realizar" />
-                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.trabajoARealizar}" />
+                <p:outputLabel id="etiqueta50" value="Id_Orden: " />
+                <p:outputLabel id="etiqueta51" value="#{modificarOrdTrabajo.ord.ordSelected.idOrden}" />
+                <p:outputLabel id="etiqueta52" value="Id Aviso: " />  
+                <p:outputLabel id="etiqueta53" value="#{modificarOrdTrabajo.idAviso}" />
+                <p:outputLabel id="etiqueta54" value="Supervisor: " />  
+                <p:outputLabel id="etiqueta55" value="#{modificarOrdTrabajo.supervisor}" />
+                <p:outputLabel id="etiqueta56" value="fecha_creacion" />
+                <p:outputLabel id="etiqueta57" value="#{modificarOrdTrabajo.ord.ordSelected.fechaCreacion}"/> 
+                <p:outputLabel id="etiqueta58" value="Trabajo a realizar" />
+                <p:outputLabel id="etiqueta59" value="#{modificarOrdTrabajo.ord.ordSelected.trabajoARealizar}" />
                
-                <p:outputLabel value="Brigada asignada" />
-                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.numBrigada.numBrigada}"/>
+                <p:outputLabel id="etiqueta60" value="Brigada asignada" />
+                <p:outputLabel id="etiqueta61" value="#{modificarOrdTrabajo.ord.ordSelected.numBrigada.numBrigada}"/>
                     
                 
-                <p:outputLabel value="Estado" />
-                <p:outputLabel value="#{modificarOrdTrabajo.ord.ordSelected.estado}"/>
+                <p:outputLabel id="etiqueta62" value="Estado" />
+                <p:outputLabel id="etiqueta63" value="#{modificarOrdTrabajo.ord.ordSelected.estado}"/>
                   
-                <p:outputLabel  value="Actualizaciones" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{modificarOrdTrabajo.actuacionesRealizadas}"  /> 
+                <p:outputLabel  id="etiqueta64" value="Actualizaciones" />
+                <p:inplace id="inplace50" editor="true">
+                    <h:inputTextarea id="textarea50" value="#{modificarOrdTrabajo.actuacionesRealizadas}"  /> 
                     </p:inplace> 
-                <p:outputLabel  value="Observaciones" />
-                <p:inplace editor="true">
-                    <h:inputTextarea value="#{modificarOrdTrabajo.actuacionesObservaciones}"  /> 
+                <p:outputLabel  id="etiqueta65" value="Observaciones" />
+                <p:inplace id="inplace51" editor="true">
+                    <h:inputTextarea id="textarea51" value="#{modificarOrdTrabajo.actuacionesObservaciones}"  /> 
                     </p:inplace> 
                 
                 

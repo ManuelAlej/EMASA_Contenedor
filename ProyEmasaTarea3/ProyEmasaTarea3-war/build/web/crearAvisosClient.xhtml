@@ -11,45 +11,46 @@
     </ui:define>
 
     <ui:define name="aviso">
-        <c:set var="who" value="${QuienEntra.entraComoCliente}"/>
-        <c:set var="bot" value="${QuienEntra.opmov}"/>
-        <h:form enctype="multipart/form-data">
-        
-        
+        <c:set id="quienentra" var="who" value="${QuienEntra.entraComoCliente}"/>
+        <c:set id="quienentramov" var="bot" value="${QuienEntra.opmov}"/>
+        <p:growl id="correcto" showDetail="true" life="4000" />
+        <h:form id="formulario4">       
             <p:panelGrid id="aviso" columns="2">   
-                <p:outputLabel value="Nombre: " />
-                <p:inputText value="#{crearAvisos.nombre}"/>
-                <p:outputLabel value="DNI: " />
-                <p:inputText value="#{crearAvisos.dni}" />
-                <p:outputLabel value="Telefono: " />
-                <p:inputText value="#{crearAvisos.telefono}" />
-                <p:outputLabel value="E-mail: " />
-                <p:inputText value="#{crearAvisos.email}" />
+                <p:outputLabel id="etiqueta" value="Nombre: " />
+                <p:inputText id="nombre" value="#{crearAvisos.nombre}"/>
+                <p:outputLabel id="dni" value="DNI: " />
+                <p:inputText id="dni2" value="#{crearAvisos.dni}" />
+                <p:outputLabel id="telef" value="Telefono: " />
+                <p:inputText id="telef2" value="#{crearAvisos.telefono}" />
+                <p:outputLabel id="email" value="E-mail: " />
+                <p:inputText id="email" value="#{crearAvisos.email}" />
                 <p:outputLabel value="Poliza: " />
-                <p:inputText value="#{crearAvisos.poliza}" />
+                <p:inputText id="poliza" value="#{crearAvisos.poliza}" />
                 <p:outputLabel value="Dirección: " />
-                <p:inputText value="#{crearAvisos.direccion}" />
+                <p:inputText id="direcc" value="#{crearAvisos.direccion}" />
                 <p:outputLabel value="Causa: " />
-                <p:inputText value="#{crearAvisos.causa}" />
+                <p:inputText id="causa" value="#{crearAvisos.causa}" />
                 <p:outputLabel value="Descripcion: " />
-                <p:inputText value="#{crearAvisos.descripcion}" />
+                <p:inputText id="descrip" value="#{crearAvisos.descripcion}" />
                 <p:outputLabel value="Urgencia: " rendered="${!who}"/>
-                <p:inputText value="#{crearAvisos.urgencia}" rendered="${!who}"/>
+                <p:inputText id="urgen" value="#{crearAvisos.urgencia}" rendered="${!who}"/>
                 <p:outputLabel value="Tipo de aviso: " rendered="${!who}"/>
-                <p:inputText value="#{crearAvisos.tipoAviso}" rendered="${!who}"/>
+                <p:inputText id="tipoAv" value="#{crearAvisos.tipoAviso}" rendered="${!who}"/>
                 <p:outputLabel value="Red de agua: " rendered="${!who}"/>
-                <p:inputText value="#{crearAvisos.redAgua}" rendered="${!who}"/> 
-                <h:inputFile value="Elegir ..." rendered="${!who}"/>  
+                <p:inputText id="redAgua" value="#{crearAvisos.redAgua}" rendered="${!who}"/> 
+                <p:fileUpload id="file" value="#{crearAvisos.file}" mode="simple" rendered="${!who}"/>  
+                <p:commandButton id="upload" value="Subir" ajax="false" actionListener="#{crearAvisos.upload}"/>
+                  
             </p:panelGrid>
-            <p:commandButton value="Crear" action="#{crearAvisos.crearAvisoNuevo()}" />
-            <p:commandButton value="Reset" update="aviso" process="@this" style="margin-right:20px;"  >
-                <p:resetInput target="aviso" />
+            <p:commandButton id="crear" value="Crear" action="#{crearAvisos.crearAvisoNuevo()}"  />
+            <p:commandButton id="reset" value="Reset" update="aviso" process="@this" style="margin-right:20px;"  >
+                <p:resetInput id="resetInput" target="aviso" />
             </p:commandButton>
             
             
         </h:form>
         <h:form>
-        <p:commandButton  value="volver" action="#{QuienEntra.volver()}" rendered="${!who}" />
+        <p:commandButton id="volver" value="volver" action="#{QuienEntra.volver()}" rendered="${!who}" />
         </h:form>
     </ui:define>
 </ui:composition>

@@ -16,9 +16,9 @@
 
 
             <p:dataGrid id="gridDetalles" value="#{controlHistoricos.historicoSelected}" var="item" columns="2"  >
-                <f:facet name="header" >Detalles</f:facet>
-                <h:panelGrid columns="2" cellpadding="10" cellspacing="2" border="1" width="75%"  > 
-                    <h:outputText value="Fecha ultima actualizacion "/>
+                <f:facet name="header" id="detalles" >Detalles</f:facet>
+                <h:panelGrid id="panelgrid" columns="2" cellpadding="10" cellspacing="2" border="1" width="75%"  > 
+                    <h:outputText id="fechaActual" value="Fecha ultima actualizacion "/>
                     <h:outputText value="#{item.historicoPK.fechaActualizacion}">
                         <f:convertDateTime pattern="MM/dd/yyyy" />
                     </h:outputText>

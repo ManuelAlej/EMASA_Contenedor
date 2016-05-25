@@ -12,34 +12,34 @@
     </ui:define>
 
     <ui:define name="aviso">
-        <c:choose>
-            <c:when test="#{controlVisitas.empleado}">
+        <c:choose id="Chose">
+            <c:when id="whe" test="#{controlVisitas.empleado}">
                 <h:form id="form">
                     <p:growl id="msgs" showDetail="true" />
                     <p:dataTable id="eventsDT" var="visitas" value="#{controlVisitas.visitas}" resizableColumns="true" >
-                        <f:facet name="header" >
+                        <f:facet id="Visit" name="header" >
                             Visitas
                         </f:facet>                     
                         
 
-                        <p:column headerText="Fecha" sortBy="#{controlVisitas.getFecha(visitas.fechaVisita)}">
-                            <h:outputText value="#{controlVisitas.getFecha(visitas.fechaVisita)}" />
+                        <p:column id="fechVisi" headerText="Fecha" sortBy="#{controlVisitas.getFecha(visitas.fechaVisita)}">
+                            <h:outputText id="FechVisi2" value="#{controlVisitas.getFecha(visitas.fechaVisita)}" />
                         </p:column>
 
-                        <p:column headerText="Causa">
-                            <h:outputText value="#{visitas.historico.causa}" />
+                        <p:column id="caus" headerText="Causa">
+                            <h:outputText id="caus1" value="#{visitas.historico.causa}" />
                         </p:column>
-                        <p:column headerText="Urgencia" sortBy="#{visitas.historico.urgencia}">
-                            <h:outputText value="#{visitas.historico.urgencia}" />
+                        <p:column id="urg" headerText="Urgencia" sortBy="#{visitas.historico.urgencia}">
+                            <h:outputText id="urg1" value="#{visitas.historico.urgencia}" />
                         </p:column>
-                        <p:column headerText="Direccion">
-                            <h:outputText value="#{visitas.historico.direccion}" />
+                        <p:column id="dir1" headerText="Direccion">
+                            <h:outputText id="dir2" value="#{visitas.historico.direccion}" />
                         </p:column>
-                        <p:column headerText="GPS">
-                            <h:outputText value="#{visitas.historico.ubicacionGps}" />
+                        <p:column id="gp" headerText="GPS">
+                            <h:outputText id="gp2" value="#{visitas.historico.ubicacionGps}" />
                         </p:column>
-                         <p:column headerText="Detalles">
-                             <p:commandButton value="Ver" action="#{controlVisitas.verVisita(visitas)}"/>
+                         <p:column id="det" headerText="Detalles">
+                             <p:commandButton id="det2" value="Ver" action="#{controlVisitas.verVisita(visitas)}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form> 
@@ -47,8 +47,8 @@
                   <h:commandButton value="Crear Aviso" action="#{QuienEntra.OPmov()}"/>
                 </h:form>  --> 
             </c:when>
-            <c:otherwise>
-                <h:outputLabel>Debe salir de la aplicación si quiere entrar como otro usuario</h:outputLabel>
+            <c:otherwise id="oth">
+                <h:outputLabel id="lab">Debe salir de la aplicación si quiere entrar como otro usuario</h:outputLabel>
             </c:otherwise>
 
         </c:choose>

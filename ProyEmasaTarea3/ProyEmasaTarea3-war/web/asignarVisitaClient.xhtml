@@ -15,7 +15,7 @@
                <p:growl id="msgs" showDetail="true" />
                
                
-               <p:outputLabel for="button" value="Fecha de la visita :" />
+               <p:outputLabel for="button" id="botonfecha" value="Fecha de la visita :" />
                <p:calendar id="button" value="#{calendarioVista.fechaAsignacion}" showOn="button" />
                
                
@@ -25,20 +25,20 @@
                 </f:facet> 
                   
                     
-                <p:column headerText="Nombre">
-                   <h:outputText value="#{asignacion.nombre}" />
+                <p:column id="columna7" headerText="Nombre">
+                   <h:outputText id="nombre" value="#{asignacion.nombre}" />
                 </p:column>
-                <p:column headerText="apellidos" >
-                    <h:outputText value="#{asignacion.apellidos}" />
+                <p:column headerText="apellidos" id="columna8" >
+                    <h:outputText id="apellidos" value="#{asignacion.apellidos}" />
                 </p:column>
-                <p:column headerText="Turno "  filterBy="#{asignacion.turno}" >
-                    <h:outputText value="#{asignacion.turno}" />
+                <p:column headerText="Turno "  id="columna9" filterBy="#{asignacion.turno}" >
+                    <h:outputText id="turno" value="#{asignacion.turno}" />
                 </p:column>
-                <p:column headerText="Especialidad" >
-                    <h:outputText value="#{asignacion.especialidad}" />
+                <p:column id="columna10" headerText="Especialidad" >
+                    <h:outputText id="especialidad" value="#{asignacion.especialidad}" />
                 </p:column>  
-                   <p:column headerText="Asignaciones" >
-                       <p:commandButton value="Asignar" action="#{controlAsignacion.AsignarOpmov(asignacion)}"></p:commandButton>
+                   <p:column id="columna11" headerText="Asignaciones" >
+                       <p:commandButton id="asignarValor" value="Asignar" action="#{controlAsignacion.AsignarOpmov(asignacion)}"></p:commandButton>
                 </p:column>  
                    
             </p:dataTable>

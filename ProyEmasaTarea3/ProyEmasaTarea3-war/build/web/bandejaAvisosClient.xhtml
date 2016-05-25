@@ -12,51 +12,51 @@
     </ui:define>
 
     <ui:define name="aviso">
-        <c:choose>
-            <c:when test="#{controlAvisos.supervisor}">
+        <c:choose id="choose2">
+            <c:when id="when2" test="#{controlAvisos.supervisor}">
                 
                         <h:form id="form">
                             <p:growl id="msgs" showDetail="true" />
 
                             <p:dataTable id="eventsDT" var="avisos" value="#{controlAvisos.avisos}" resizableColumns="true" >
-                                <f:facet name="header" >
+                                <f:facet id="avisos" name="header" >
                                     Avisos
                                 </f:facet>                     
                                 <!--<p:ajax event="rowSelect" oncomplete="location.href='avisoClient.xhtml'+'?idAv=';" listener="#{controlAvisos.onRowSelect}" update=":form:msgs" />
                                 <p:ajax event="rowUnselect" listener="#{controlAvisos.onRowUnselect}" update=":form:msgs" />-->
 
-                                <p:column headerText="fecha" sortBy="#{avisos.fechaEntrada}">
+                                <p:column id="fecha31" headerText="fecha" sortBy="#{avisos.fechaEntrada}">
                                    <!-- <h:link value="ver" outcome="avisoClient">
                                         <f:param name="idAv" value="#{avisos.idAviso}"/> 
                                         
                                     </h:link> -->
                                    
                                   
-                                    <h:outputText value="#{controlAvisos.getFechaReciente(avisos.fechaEntrada)}" />
+                                    <h:outputText id="fecha22" value="#{controlAvisos.getFechaReciente(avisos.fechaEntrada)}" />
                                 </p:column>
 
-                                <p:column headerText="origen" sortBy="#{avisos.origen}">
-                                    <h:outputText value="#{avisos.origen}" />
+                                <p:column id="origen3" headerText="origen" sortBy="#{avisos.origen}">
+                                    <h:outputText id="origen4" value="#{avisos.origen}" />
                                 </p:column>
                                 
-                                <p:column headerText="descripcion" >
-                                    <h:outputText value="#{controlAvisos.getHistorico(avisos).descripcion}"  />
+                                <p:column id="description" headerText="descripcion" >
+                                    <h:outputText id="descriptt" value="#{controlAvisos.getHistorico(avisos).descripcion}"  />
                                 </p:column>
                                 
-                                <p:column headerText="direccion" >
-                                    <h:outputText value="#{controlAvisos.getHistorico(avisos).direccion}"  />
+                                <p:column id="direccti" headerText="direccion" >
+                                    <h:outputText id="ddir" value="#{controlAvisos.getHistorico(avisos).direccion}"  />
                                 </p:column>
                                 
-                                <p:column headerText="estado" sortBy="#{controlAvisos.getHistorico(avisos).estado}">                                                                        
-                                    <h:outputText value="#{controlAvisos.getHistorico(avisos).estado}" />
+                                <p:column id="estado1" headerText="estado" sortBy="#{controlAvisos.getHistorico(avisos).estado}">                                                                        
+                                    <h:outputText id="estado3" value="#{controlAvisos.getHistorico(avisos).estado}" />
                                 </p:column>
                                 
-                                <p:column headerText="urgencia" sortBy="#{controlAvisos.getHistorico(avisos).urgencia}">
-                                    <h:outputText value="#{controlAvisos.getHistorico(avisos).urgencia}" />
+                                <p:column id="urge" headerText="urgencia" sortBy="#{controlAvisos.getHistorico(avisos).urgencia}">
+                                    <h:outputText id="urge2" value="#{controlAvisos.getHistorico(avisos).urgencia}" />
                                 </p:column>
                                 
-                                 <p:column headerText="Modificar">
-    <h:commandButton value="Entrar" action="#{controlAvisos.cambiar(avisos)}"/>
+                                 <p:column id="modi" headerText="Modificar">
+    <h:commandButton id="cambios" value="Entrar" action="#{controlAvisos.cambiar(avisos)}"/>
     </p:column>
                                 
                             </p:dataTable>
@@ -65,8 +65,8 @@
                         </h:form>
                    
             </c:when>
-            <c:otherwise>
-                <h:outputLabel>Debe salir de la aplicación si quiere entrar como otro usuario</h:outputLabel>
+            <c:otherwise id="otherw">
+                <h:outputLabel id="label4">Debe salir de la aplicación si quiere entrar como otro usuario</h:outputLabel>
             </c:otherwise>
 
         </c:choose>

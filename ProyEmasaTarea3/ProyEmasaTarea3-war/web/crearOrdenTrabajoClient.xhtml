@@ -12,36 +12,36 @@
 
     <ui:define name="aviso">
         <h:form id="form">
-            <h:commandButton value="Crear Orden de Trabajo" action="#{ordenTrabajo.crearOT()}"/>                   
-            <h:commandButton value="Cancelar" action="#{ordenTrabajo.volver}"/> <!-- cambiar a la lista de OT.xhtml -->
+            <h:commandButton id="boton90" value="Crear Orden de Trabajo" action="#{ordenTrabajo.crearOT()}"/>                   
+            <h:commandButton id="boton91" value="Cancelar" action="#{ordenTrabajo.volver}"/> <!-- cambiar a la lista de OT.xhtml -->
             
            
-            <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
-                <p:printer target="ot" />
+            <p:commandButton id="boton92" value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer id="printer90" target="ot" />
             </p:commandButton>
             <p:growl id="msgs" showDetail="true" />
             <p:panelGrid id="ot" columns="4">
-                <p:outputLabel value="Id_Orden: " />
-                <p:outputLabel value="#{ordenTrabajo.ID_aviso}" />
-                <p:outputLabel value="Id Aviso: " />  
-                <p:outputLabel value="#{opcionesAviso.aviso.idAviso}" />
-                <p:outputLabel value="Supervisor: " />  
-                <p:outputLabel value="#{opcionesAviso.supervisor}" />
-                <p:outputLabel value="fecha_creacion" />
-                <p:outputLabel value="#{calendarioVista.fecha_actual}"/> 
-                <p:outputLabel value="Trabajo a realizar" />
-                <p:inputTextarea rows="6" cols="33" value="#{ordenTrabajo.trabajo_realizar}" />
+                <p:outputLabel id="etiqueta90" value="Id_Orden: " />
+                <p:outputLabel id="etiqueta91" value="#{ordenTrabajo.ID_aviso}" />
+                <p:outputLabel id="etiqueta92" value="Id Aviso: " />  
+                <p:outputLabel id="etiqueta93" value="#{opcionesAviso.aviso.idAviso}" />
+                <p:outputLabel id="etiqueta94" value="Supervisor: " />  
+                <p:outputLabel id="etiqueta95" value="#{opcionesAviso.supervisor}" />
+                <p:outputLabel id="etiqueta96" value="fecha_creacion" />
+                <p:outputLabel id="etiqueta97" value="#{calendarioVista.fecha_actual}"/> 
+                <p:outputLabel id="etiqueta98" value="Trabajo a realizar" />
+                <p:inputTextarea id="textarea90" rows="6" cols="33" value="#{ordenTrabajo.trabajo_realizar}" />
                
                 
-                <p:outputLabel for="brigadaList" value="Brigadas " />
+                <p:outputLabel id="etiqueta99" for="brigadaList" value="Brigadas " />
                 <p:selectOneMenu id="brigadaList" value="#{ordenTrabajo.brigadaSelect}">
-            <f:selectItem itemLabel="Selecciona una brigada a asignar" itemValue="" />
-            <f:selectItems value="#{ordenTrabajo.brigadasList}" />
+            <f:selectItem id="item90" itemLabel="Selecciona una brigada a asignar" itemValue="" />
+            <f:selectItems id="item91" value="#{ordenTrabajo.brigadasList}" />
         </p:selectOneMenu>
                
                 
-                <p:outputLabel value="Estado" />
-                <p:outputLabel value="#{ordenTrabajo.estado}"/>
+                <p:outputLabel id="etiqueta100" value="Estado" />
+                <p:outputLabel id="etiqueta101" value="#{ordenTrabajo.estado}"/>
                    
                 
                 

@@ -8,9 +8,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="empleado">
-        <h:form>
-            <p:commandLink value="Crear orden de trabajo"  action="#{boton.crearOT()}" />  
-            <p:commandLink value="Volver"  action="#{boton.opcionesAvisos()}" />  
+        <h:form id="frm">
+            <p:commandLink id="crear" value="Crear orden de trabajo"  action="#{boton.crearOT()}" />  
+            <p:commandLink id="volver1" value="Volver"  action="#{boton.opcionesAvisos()}" />  
             
         
         </h:form>
@@ -24,29 +24,29 @@
                             <p:growl id="msgs" showDetail="true" />
 
                             <p:dataTable id="eventsDT" var="listOrd" value="#{controlOrdenTrabajo.listOrd}" resizableColumns="true" selectionMode="single" selection="#{controlOrdenTrabajo.ordSelected}" rowKey="#{listOrd}">
-                                <f:facet name="header" >
+                                <f:facet id="ordenes" name="header" >
                                     Ordenes de trabajo
                                 </f:facet>                     
                                 <p:ajax event="rowSelect" oncomplete="location.href='modificarOrdenTrabajoClient.xhtml';" listener="#{controlOrdenTrabajo.onRowSelect}" update=":form:msgs" />
                                 <p:ajax event="rowUnselect" listener="#{controlOrdenTrabajo.onRowUnselect}" update=":form:msgs" />
 
-                                <p:column headerText="ID Orden trabajo" sortBy="#{listOrd.idOrden}">
-                                    <h:outputText value="#{listOrd.idOrden}" />
+                                <p:column id="ids" headerText="ID Orden trabajo" sortBy="#{listOrd.idOrden}">
+                                    <h:outputText id="idO" value="#{listOrd.idOrden}" />
                                 </p:column>
-                                <p:column headerText="ID Orden Aviso" sortBy="#{controlOrdenTrabajo.idAviso}">
-                                    <h:outputText value="#{controlOrdenTrabajo.idAviso}" />
+                                <p:column id="idA" headerText="ID Orden Aviso" sortBy="#{controlOrdenTrabajo.idAviso}">
+                                    <h:outputText id="idA2" value="#{controlOrdenTrabajo.idAviso}" />
                                 </p:column>
 
-                                <p:column headerText="Estado" sortBy="#{listOrd.estado}">
-                                    <h:outputText value="#{listOrd.estado}" />
+                                <p:column id="Est1" headerText="Estado" sortBy="#{listOrd.estado}">
+                                    <h:outputText id="Est2" value="#{listOrd.estado}" />
                                 </p:column>
                                 
-                                 <p:column headerText="Brigada asignada" >
-                                     <h:outputText value="#{listOrd.numBrigada.numBrigada}"  />
+                                 <p:column id="Briga" headerText="Brigada asignada" >
+                                     <h:outputText id="Briga1" value="#{listOrd.numBrigada.numBrigada}"  />
                                 </p:column>
                                 
-                                <p:column headerText="Fecha creacion" >
-                                    <h:outputText value="#{listOrd.fechaCreacion}"  />
+                                <p:column id="Fecha1" headerText="Fecha creacion" >
+                                    <h:outputText id="Fecha2" value="#{listOrd.fechaCreacion}"  />
                                 </p:column>
                                 
                               

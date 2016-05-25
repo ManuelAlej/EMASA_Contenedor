@@ -8,27 +8,28 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
       
     <ui:define name="empleado">
-         <c:choose>
-             <c:when test="#{controlAvisos.supervisor}">
-                <h:form>
+         <c:choose id="choose">
+             <c:when id="when" test="#{controlAvisos.supervisor}">
+                <h:form id="ff">
 
-                    <p:commandLink value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" />    
+                      
                 <!--     <h:link value="Modificar Aviso" outcome="avisoClient">
                          <f:param name="idAv" value="#{opcionesAviso.aviso.idAviso}"/>
                          </h:link>
                     -->
-
-                    <p:commandLink value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
-                    <p:commandLink value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
-                    <p:commandLink value="Reasignar aviso" id="reasignar_aviso"  action="#{boton.reasignarAviso()}"  />
-                    <p:commandLink value="Relacionar con otro aviso" id="aviso_relacionado"  action="#{boton.avisosRelacionados()}" />      
-                    <p:commandLink value="Bandeja de entrada" id="bandejaEntrada"  action="#{boton.volverBandeja()}"  />
-                    <p:commandLink value="Ver historico"  onclick="PF('dlg3').show();"  />  
+                     <p:commandLink id="modific" value="Modificar Aviso"  action="#{opcionesAviso.modificarAviso()}" /> 
+                    <p:commandLink  value="Gestion orden de trabajo" id="got"  action="#{boton.ot}" />
+                    <p:commandLink  value="Asignar visita" id="asignar_visita"  action="#{boton.asignarVisita()}"  />
+                    <p:commandLink  value="Reasignar aviso" id="reasignar_aviso"  action="#{boton.reasignarAviso()}"  />
+                    <p:commandLink  value="Relacionar con otro aviso" id="aviso_relacionado"  action="#{boton.avisosRelacionados()}" />      
+                    <p:commandLink  value="Bandeja de entrada" id="bandejaEntrada"  action="#{boton.volverBandeja()}"  />
+                    <p:commandLink  id="verHist" value="Ver historico"  onclick="PF('dlg3').show();"  />  
                 </h:form>
             </c:when> 
-             <c:otherwise>
-                 <h:form>
-                 <p:commandButton value="Volver" action="bandejaVisitasClient.xhtml"/>
+             <c:otherwise id="other">
+                 <h:form id="form2">
+                 <p:commandButton id="modific2" value="Modificar Aviso"  action="#{opcionesAviso.modificarAvisoOp()}" /> 
+                 <p:commandButton id="bandeja" value="Volver" action="bandejaVisitasClient.xhtml"/>
                  </h:form>
             </c:otherwise>
          </c:choose>
@@ -38,77 +39,77 @@
         
          <h:form id="formulario"> 
              
-            <p:dialog header="Seleccione el rango de fecha" widgetVar="dlg3" height="100">
+            <p:dialog id="dial" header="Seleccione el rango de fecha" widgetVar="dlg3" height="100">
                 
-                    <p:outputLabel for="button" value="Desde" />
+                    <p:outputLabel id="desde" for="button" value="Desde" />
                     <p:calendar id="button2" value="#{calendarioVista.date2}" showOn="button" />
 
-                    <p:outputLabel for="button" value="Hasta" />
+                    <p:outputLabel id="hasta" for="button" value="Hasta" />
                     <p:calendar id="button3" value="#{calendarioVista.date3}" showOn="button" />
                     
                     <p:outputLabel id="comentarioFechas" value="Puedes dejar las fechas en blanco para ver todos los historicos"/>
-                    <p:commandButton value="Confirmar" onclick="#{opcionesAviso.guardarId(opcionesAviso.aviso.idAviso)}" oncomplete="irHistoricos(#{opcionesAviso.aviso.idAviso})" />
+                    <p:commandButton id="confirm" value="Confirmar" onclick="#{opcionesAviso.guardarId(opcionesAviso.aviso.idAviso)}" oncomplete="irHistoricos(#{opcionesAviso.aviso.idAviso})" />
             </p:dialog>
             
        
-            <p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
-                <p:printer target="avisoImpreso" />
+            <p:commandButton id="but7" value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px">
+                <p:printer id="print" target="avisoImpreso" />
             </p:commandButton>   
             <p:panelGrid id="avisoImpreso" columns="4">
-                    <p:outputLabel value="ID aviso: " /> <p:outputLabel id="id_aviso" value=" #{opcionesAviso.aviso.idAviso}" /> 
-                    <p:outputLabel value="Supervisor asignado: " /> <p:outputLabel id="ID_supervisor" value=" #{opcionesAviso.supervisor}" />      
-                    <p:outputLabel value="Fecha de entrada: " />
+                    <p:outputLabel id="id" value="ID aviso: " /> <p:outputLabel id="id_aviso" value=" #{opcionesAviso.aviso.idAviso}" /> 
+                    <p:outputLabel id="supe" value="Supervisor asignado: " /> <p:outputLabel id="ID_supervisor" value=" #{opcionesAviso.supervisor}" />      
+                    <p:outputLabel id="fech" value="Fecha de entrada: " />
                     <p:outputLabel id="fecha_entrada" value=" #{opcionesAviso.fechaEntrada}" >
                     </p:outputLabel>
-                    <p:outputLabel value="Origen: " /> <p:outputLabel id="origen" value=" #{opcionesAviso.aviso.origen}" /> 
-                    <p:outputLabel value="Dni cliente: " /> <p:outputLabel id="DNI_cliente" value=" #{opcionesAviso.aviso.dni.dni}" /> 
-                    <p:outputLabel value="Ultimo historico: " /> <p:outputLabel id="Ultima_version" value=" #{opcionesAviso.ultimoHist}" > </p:outputLabel>    
-                    <p:outputLabel value="Relacionado con: " /> 
-                    <p:inplace editor="true">
+                    <p:outputLabel id="orig" value="Origen: " /> <p:outputLabel id="origen" value=" #{opcionesAviso.aviso.origen}" /> 
+                    <p:outputLabel id="dni" value="Dni cliente: " /> <p:outputLabel id="DNI_cliente" value=" #{opcionesAviso.aviso.dni.dni}" /> 
+                    <p:outputLabel id="ultHist" value="Ultimo historico: " /> <p:outputLabel id="Ultima_version" value=" #{opcionesAviso.ultimoHist}" > </p:outputLabel>    
+                    <p:outputLabel id="Relacion" value="Relacionado con: " /> 
+                    <p:inplace id="inplace11" editor="true">
                         <p:inputText  id="relacionado" value="#{opcionesAviso.relacionado}"  /> 
                     </p:inplace>     
-                    <p:outputLabel  value="Descripción " />
-                    <p:inplace editor="true"> 
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.descripcion}"  /> 
+                    <p:outputLabel id="descripcion" value="Descripción " />
+                    <p:inplace id="inplace13" editor="true"> 
+                        <h:inputTextarea id="descript" value="#{opcionesAviso.his_nuevo.descripcion}"  /> 
                     </p:inplace>                     
-                    <p:outputLabel  value="Direccion " />
-                    <p:inplace editor="true">
-                        <p:inputText value="#{opcionesAviso.his_nuevo.direccion}"  /> 
+                    <p:outputLabel id="direc" value="Direccion " />
+                    <p:inplace id="inplace15" editor="true">
+                        <p:inputText id="direct" value="#{opcionesAviso.his_nuevo.direccion}"  /> 
                     </p:inplace> 
-                    <p:outputLabel  value="Estado " />
-                    <p:inplace editor="true">
-                        <p:inputText  value="#{opcionesAviso.his_nuevo.estado}"  /> 
+                    <p:outputLabel id="estad" value="Estado " />
+                    <p:inplace id="inplace16" editor="true">
+                        <p:inputText id="esta" value="#{opcionesAviso.his_nuevo.estado}"  /> 
                     </p:inplace> 
-                    <p:outputLabel  value="Duplicado " />
-                    <p:inplace editor="true">
-                        <p:inputText  value="#{opcionesAviso.his_nuevo.duplicado}"  /> 
+                    <p:outputLabel id="duplic"  value="Duplicado " />
+                    <p:inplace id="inplaz" editor="true">
+                        <p:inputText id="duplic2" value="#{opcionesAviso.his_nuevo.duplicado}"  /> 
                     </p:inplace> 
-                    <p:outputLabel for="button" value="Fecha cierre:" />
+                    <p:outputLabel id="fechaCi" for="button" value="Fecha cierre:" />
                     <p:calendar id="button" value="#{calendarioVista.date1}" showOn="button" />
-                    <p:outputLabel  value="Tipo de aviso" />
-                    <p:inplace editor="true">
-                        <p:inputText value="#{opcionesAviso.his_nuevo.tipoAviso}"  /> 
+                    <p:outputLabel id="Tipo" value="Tipo de aviso" />
+                    <p:inplace id="Inplac" editor="true">
+                        <p:inputText id="tipoAv" value="#{opcionesAviso.his_nuevo.tipoAviso}"  /> 
                     </p:inplace>     
-                    <p:outputLabel  value="Causa" />
-                    <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.causa}"  /> 
+                    <p:outputLabel id="caus" value="Causa" />
+                    <p:inplace id="inplace18" editor="true">
+                        <h:inputTextarea id="causa2" value="#{opcionesAviso.his_nuevo.causa}"  /> 
                     </p:inplace>    
-                    <p:outputLabel  value="Urgencia" />
-                    <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.urgencia}"  /> 
+                    <p:outputLabel id="label"  value="Urgencia" />
+                    <p:inplace id="inpl2" editor="true">
+                        <h:inputTextarea id="urgen" value="#{opcionesAviso.his_nuevo.urgencia}"  /> 
                     </p:inplace>    
-                    <p:outputLabel  value="Ubicacion_gps" />
-                    <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.ubicacionGps}"  /> 
+                    <p:outputLabel id="ubica" value="Ubicacion_gps" />
+                    <p:inplace id="label2" editor="true">
+                        <h:inputTextarea id="gps2" value="#{opcionesAviso.his_nuevo.ubicacionGps}"  /> 
                     </p:inplace>   
-                    <p:outputLabel  value="Red de agua" />
-                    <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.redAgua}"  /> 
+                    <p:outputLabel id="label3" value="Red de agua" />
+                    <p:inplace id="inpl5" editor="true">
+                        <h:inputTextarea id="reda" value="#{opcionesAviso.his_nuevo.redAgua}"  /> 
                     </p:inplace> 
                     
-                    <p:outputLabel  value="Documentación adjunta" />
-                    <p:inplace editor="true">
-                        <h:inputTextarea value="#{opcionesAviso.his_nuevo.docAdjunto}"  /> 
+                    <p:outputLabel id="Adjun" value="Documentación adjunta" />
+                    <p:inplace id="inp" editor="true">
+                        <h:inputTextarea id="docaJ" value="#{opcionesAviso.his_nuevo.docAdjunto}"  /> 
                     </p:inplace>       
                 </p:panelGrid>   
         </h:form>
