@@ -25,7 +25,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import org.primefaces.model.UploadedFile;
 
 
 /**
@@ -54,6 +57,7 @@ public class CrearAvisos implements Serializable {
     private String  gps="";
     private String  redAgua="";
     private String  adjunto="";
+    private UploadedFile file;
     private Historico historico;
     
     @Inject
@@ -73,6 +77,20 @@ public class CrearAvisos implements Serializable {
     
     @EJB
     private EmpleadoNegocio empleadoEJB;
+
+    
+    public void upload() {  
+        FacesMessage msg = new FacesMessage("Ok", "Fichero " + file.getFileName() + " subido correctamente.");
+    	FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+    
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
 
     public String getUrgencia() {
         return urgencia;
@@ -315,7 +333,7 @@ public class CrearAvisos implements Serializable {
      
         newHistorico.setHistoricoPK(historicoPK);
         
-        historicoEJB.crearHistorico(newHistorico); //persistir el historico          
+        historicoEJB.persist(newHistorico); //persistir el historico          
         
         //reinicio valores
         nombre ="";
@@ -334,6 +352,8 @@ public class CrearAvisos implements Serializable {
         redAgua="";
         adjunto="";
         
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Aviso creado correctamente", null);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         
         return "crearAvisosClient.xhtml";
     }
